@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .abs {
+      color: #3f3f3f;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+  </div>
+  <template id="tang">
+    <div :class="['abnc', isActive ? 'abs' : '']">哈哈哈</div>
+    <button @click="togger">切换</button>
+  </template>
+  <script src="https://unpkg.com/vue@next"></script>
+  <script>
+    Vue.createApp({
+      template: "#tang",
+      data() {
+        return {
+          isActive: true
+        }
+      },
+      methods: {
+        togger: function  () {
+          this.isActive = !this.isActive
+        }
+      }
+    }).mount("#app")
+  </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+  </div>
+  <template id="tang">
+    <button v-on:click="btnClick">您好</button>
+    <!-- v-on的语法糖 @ -->
+    <button @click="btnClick">您好</button>
+
+    <!-- 默认事件传递参数 -->
+    <button @click="func">btn</button>
+    <button @click="func2($event, 'tang')">btn2</button>
+
+    <!-- 同时绑定多个事件 -->
+    <div @="{click: onClick, mousemove: mouseMove}" style="width: 200px; height: 200px; border: 1px solid #000;">按钮</div>
+  </template>
+  <script src="https://unpkg.com/vue@next"></script>
+  <script>
+    Vue.createApp({
+      template: "#tang",
+      data() {
+        return {    
+        }
+      },
+      methods: {
+        btnClick() {
+          console.log("btnClick")
+        },
+        func: function(event) {
+          console.log(event)
+        },
+        func2(event, name) {
+          console.log(event, name)
+        },
+        onClick() {
+          console.log("onClick")
+        },
+        mouseMove() {
+          console.log("mouseMove")
+        }
+      }
+    }).mount("#app")
+  </script>
+</body>
+</html>

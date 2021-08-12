@@ -1,0 +1,2 @@
+::1 - - [22/Mar/2021:09:59:22 +0000] "POST /test HTTP/1.1" 200 - "-" "PostmanRuntime/7.26.10"
+::1 - - [22/Mar/2021:10:17:28 +0000] "GET /product/alkjdsf123 HTTP/1.1" 404 157 "-" "PostmanRuntime/7.26.10"

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <div id="app"></div>
+
+  <template id="tang">
+    <!-- 计算属性是有缓存的不用每次都执行, 依赖的data数据改变计算属性也会响应改变 -->
+    <!-- 方法每次都会执行调用, 在需要复杂逻辑展示的时候推荐使用计算属性 -->
+    <div>{{ fullName }}</div>
+    <div>{{ fullName }}</div>
+    <div>{{ fullName }}</div>
+    <div>{{ fullName }}</div>
+    <div>{{ getFullName() }}</div>
+    <div>{{ format }}</div>
+    <button v-on:click="changeComputed">btnComputed</button>
+  </template>
+
+  <script src="https://unpkg.com/vue@next"></script>
+  <script>
+    Vue.createApp({
+      template: "#tang",
+      data() {
+        return {
+          firstName: "cobe",
+          lastName: "yarl",
+          num: 1
+        }
+      },
+      computed: {
+        fullName() {
+          return `${this.firstName} ${this.lastName}`
+        },
+        format: {
+          get() {
+            return this.num + 1; 
+          },
+          set(value) {
+            this.num = value
+          }
+          // 计算属性的set方法调用, 直接给计算属性赋值, 在set方法的参数可以获取
+        }
+      },
+      methods: {
+        getFullName() {
+          return `${this.firstName} ${this.lastName}`
+        },
+        changeComputed() {
+          this.format = 999
+        }
+      }
+    }).mount("#app")
+  </script>
+</body>
+</html>

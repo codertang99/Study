@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+
+  <template id="tang">
+    <div>{{ info }}</div>
+    <button @click="changeInfoName">修改info.name</button>
+  </template>
+
+  <script src="https://unpkg.com/vue@next"></script>
+  <script>
+    Vue.createApp({
+      template: "#tang",
+      data() {
+        return {
+          info: { name: "tang", age: 18 }
+        }
+      },
+      watch: {
+        // 侦听的其它方式
+        "info.name": function(newVal, oldVal) {
+          console.log(newVal, oldVal);
+        },
+      },
+      methods: {
+        changeInfoName() {
+          this.info.name = "cobe"
+        }
+      },
+      created() {
+        const unwatch = this.$watch("info", (newVal, oldVal) => {
+          console.log(newVal, oldVal)
+        }, {
+          deep: true,
+          immediate: true
+        })
+      },
+      mounted() {
+        unwatch()
+      }
+    }).mount("#app")
+  </script>
+</body>
+</html>

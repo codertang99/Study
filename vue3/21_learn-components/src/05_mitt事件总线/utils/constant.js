@@ -1,0 +1,1 @@
+export const INNER_EMITTER = "inner"

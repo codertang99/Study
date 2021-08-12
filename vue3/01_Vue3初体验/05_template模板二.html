@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+  <template id="tang">   
+    <h2>{{ title }}</h2>
+  </template>
+  <script src="https://unpkg.com/vue@next"></script>
+  <script>
+    // template模板实际上是html中存在的元素， 浏览器并不会做渲染， vue会帮我们做渲染
+    Vue.createApp({
+      template: "#tang",
+      data() {
+        return {
+          title: "Hello World!!!"
+        }
+      },
+      methods: {
+      }
+    }).mount("#app")
+  </script>
+</body>
+</html>

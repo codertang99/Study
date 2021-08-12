@@ -1,0 +1,1 @@
+import{o,c as e,t as n,a as t}from"./vendor.a9d34a67.js";const s={data:()=>({msg:"您好呀, vitejs"})};s.render=function(t,s,a,l,c,d){return o(),e("h2",null,n(c.msg),1)};console.log(123132),console.log(2+4),console.log(3+9);const a=document.createElement("div");a.className="title",a.innerHTML="Hello Vite",document.body.appendChild(a),t(s).mount("#app");

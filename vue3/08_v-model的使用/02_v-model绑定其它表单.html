@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+  <template id="tang">
+    <textarea name="tx" id="text" cols="30" rows="10" v-model="texts"></textarea>
+    <h2>{{ texts }}</h2>
+
+    <label for="">
+      check
+      <input id="" type="checkbox" v-model="check">
+    </label>
+    <h2>{{check}}</h2>
+
+    <h2>请选择水果</h2>
+    <label for="apple">苹果
+      <input id="apple" type="checkbox" v-model="fruit" value="苹果">
+    </label>
+    <label for="orange">橘子
+      <input id="orange" type="checkbox" v-model="fruit" value="橘子">
+    </label>
+    <label for="banana">香蕉
+      <input id="banana" type="checkbox" v-model="fruit" value="香蕉">
+    </label>
+    <h2>{{ fruit }}</h2>
+
+    <h2>请选择男女</h2>
+    <label for="nn">
+      男
+      <input id="nn" type="radio" value="nan" v-model="xinbie">
+    </label>
+    <label for="vv">
+      女
+      <input id="vv" type="radio" value="nv" v-model="xinbie">
+    </label>
+    <h2>{{ xinbie }}</h2>
+
+    <select v-model="options">
+      <option value="1">选项一</option>
+      <option value="2">选项二</option>
+      <option value="3">选项三</option>
+    </select>
+    <h2>{{ options }}</h2>
+
+  </template>
+  <script src="https://unpkg.com/vue@next"></script>
+  <script>
+    Vue.createApp({
+      template: "#tang",
+      data() {
+        return {
+          texts: "文章",
+          check: false,
+          fruit: ["香蕉"],
+          xinbie: "nv",
+          options: ["2"]
+        }
+      }
+    }).mount("#app")
+  </script>
+</body>
+</html>

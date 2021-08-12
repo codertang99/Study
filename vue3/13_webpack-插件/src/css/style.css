@@ -1,0 +1,28 @@
+/* 
+  默认情况下不会对css等进行解析, 需要对应的loader进行配置打包生效解析
+  css-loader使用方式
+    1. 内联使用 css-loader!../css/style.css
+    2. 脚手架(5已不使用这种方式)
+    3. 配置方式 
+      module: {
+        rules: [
+          {
+            test: /\.css$/,正则匹配对应类型需要解析的文件,
+            loader有多种写法
+            loader: "css-loader" 语法糖方式一
+            use: [
+              "css-loader",
+              {loader: "css-loader", options: {}}
+            ]
+          },
+          {}
+        ]
+      }
+*/
+
+.title {
+  font-size: 40px;
+  color: #444;
+  font-weight: bold;
+  user-select: none;
+}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+  <script src="./renderer.js"></script>
+  <script>
+
+    // 1. 通过h函数来创建一个vnode
+    const vnode = h("div", { class: "tang" }, [
+      h("h2", null, "当前计数: 100"),
+      h("span", null, "哈哈哈哈")
+    ])
+
+    // 2. 将虚拟dom挂载真实dom中, 挂载到#app中
+    mount(vnode, document.querySelector("#app"))
+
+    const vnode1 = h("h2", { class: "tang" }, "呵呵呵")
+
+    patch(vnode, vnode1)
+
+  </script>
+</body>
+</html>

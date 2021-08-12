@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    [v-cloak] {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="app"></div>
+  <template id="tang">
+    <div v-html="msg"></div>
+  </template>
+
+  <script src="https://unpkg.com/vue@next"></script>
+  <script>
+    Vue.createApp({
+      template: "#tang",
+      data() {
+        return {
+          msg: "<span style='color: #000; background: #fe6;'>您好呀</span>"
+        }
+      }
+    }).mount("#app")
+  </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+
+  <template id="tang">
+  </template>
+
+  <script src="https://unpkg.com/vue@next"></script>
+  <script>
+    Vue.createApp({
+      template: "#tang",
+      data() {
+        return {
+          // 侦听mssage的变化,  进行一些逻辑的处理(JavaScript, 网络请求等)
+          message: "Hello",
+          info: { name: "tang", age: 18 }
+        }
+      },
+      watch: {
+        // 默认情况下的watch只会监听数据本身的变化(内部数据的变化是不能够侦听)
+        message(newVal, oldVal) {
+          console.log(`新的值：${newVal}, 旧的值: ${oldVal}`)
+        },
+        // watch深度监听, 对象的形式, handler 函数, deep是否开启深度监听, immediate第一次是否执行, 一般用于逻辑处理
+        info: {
+          handler: function(newVal, oldVal) {
+            console.log("newVal:", newVal, "oldVal:", oldVal)
+          },
+          deep: true,
+          immediate: true
+        }
+      }
+    }).mount("#app")
+  </script>
+</body>
+</html>

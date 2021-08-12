@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+  </div>
+  <template id="tang">
+    <table v-if="infos.length > 0">
+      <thead>
+        <th></th>
+        <th>书籍名称</th>
+        <th>出版日期</th>
+        <th>价格</th>
+        <th>购买数量</th>
+        <th>操作</th>
+      </thead>
+      <tbody>
+        <tr v-for="(item, index) in infos">
+          <td>{{ index + 1 }}</td>
+          <td>《{{ item.name }}》</td>
+          <td>{{ item.time }}</td>
+          <td>￥{{ item.price }}</td>
+          <td>
+            <button @click="decrement(index)" :disabled="item.num === 1">-</button>
+            {{ item.num }}
+            <button @click="increment(index)">+</button>
+          </td>
+          <td>
+            <button @click="remove(index)">移除</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h2 v-if="infos.length > 0">总价: {{total}}</h2>
+    <h2 v-else>暂无</h2>
+  </template>
+  <script src="https://unpkg.com/vue@next"></script>
+  <script src="./index.js"></script>
+</body>
+</html>

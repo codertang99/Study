@@ -1,0 +1,6 @@
+.imageBox {
+  background-image: url(../img/1.jpg);
+  background-size: contain;
+  width: 1000px;
+  height: 1000px;
+}
