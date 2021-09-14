@@ -107,8 +107,47 @@ var boo = true
 console.log(boo == true)
 var un = undefined
 console.log(undefined == undefined) // 相等
-console.log(null == null) // 相等 // null 其实是引用对象不使用是即可赋值为null
+console.log(null == null) // 相等 // null 其实是引用对象不使用是即可赋值为null, 这里涉及对象回收等问题
 console.log(undefined == null)  // 相等 // 涉及一套复杂的类型的转换
-console.log(typeof null)	// 实际上是一个object, 这里涉及对象回收等问题
+console.log(typeof null)	// 实际上是一个object
 ```
+
+
+
+### 运算符
+
+- 算术运算符(+, -, *, /, ++, --)
+
+  注意: 有字符串的运算会把所有东西吃进去、数字运算会转换成数字，不能转换则NaN
+
+- 需要注意以下比较
+
+  ```javascript
+  // 看上去不相等, 但是是相等的
+  console.log("undefined == null", undefined == null)
+  console.log("false == 0", false == 0)
+  console.log("true == 1", true == 1)
+  console.log("'5' == 5", '5' == 5)
+  console.log("[] == ''", [] == "")
+  console.log('{} == "[object Object]"', {} == "[object Object]")
+  console.log("[5] == '[5]'", [5] == '[5]')
+  
+  // 注意以下是不相等的
+  console.log("NaN == NaN", NaN == NaN) // NaN 与谁相比较都是false
+  console.log("'NaN' == NaN", NaN == 'NaN')
+  console.log("NaN != NaN", NaN != NaN) // 这是true的
+  console.log("true == 2", true == 2)
+  console.log("undefined == 0", undefined == 0)
+  console.log("null == 0", null == 0)
+  ```
+
+
+
+
+
+
+
+
+
+
 
