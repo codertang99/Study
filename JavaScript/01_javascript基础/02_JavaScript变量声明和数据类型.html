@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var x = 10;   // 变量的声明和赋值
+    console.log(x)
+    y = "hello window y"; // 可以直接使用变量、但千万不要这么做, 实际上相当于在window当中添加变量
+    console.log(y, window.y);
+
+    /***
+     * 原始类型: number, string, boolean, undefined, null
+     * 引用类型: array, object, function
+     *
+     * **/
+    var num = 10; // 十进制
+    console.log(num);
+    num = 076;  // 八进制
+    console.log(num);
+    num = 0x1f; // 十六进制
+    console.log(num);
+    num = 1.99e12;  // 类型科学计数法的相当于 1.99 * 10^12次方
+    console.log(num)
+    num = Number.MAX_VALUE;
+    num2 = Number.MIN_VALUE// 数值的最大值和最小值一般用作比较
+    console.log(num, num2);
+    num = Number.POSITIVE_INFINITY // 正无穷值, 移除时返回
+    console.log(num)
+    console.log(Number.isFinite(99))  // 不能通过比较大小、一般有对应的方法进行判别 Number.isFinite()
+    num = Number.NaN // 非数字的值为NaN
+    num2 = Number.NaN
+    console.log(num) 
+    console.log(num == num2)  // 注意不能通过 == 做比较, NaN不等于NaN, 如果要判别NaN可以通过Number.isNaN()
+    console.log(Number.isNaN(num), Number.isNaN(num2))
+
+
+    var str, str2;
+    str = "Hello stringl!!!";
+    str2 = "Hello string2!!!";
+    console.log(str);
+    console.log(str.length, str2.length); // 字符串内置的length没有括号, 返回字符串长度
+    console.log(str.charAt(6)); // 返回目标字符串指定位置的值, 下标从0开始
+    console.log(str.concat(str2)); // 连接字符串, 当然在字符串中也可以使用 + 方式进行拼接
+    console.log(str.indexOf("o"), str2.indexOf("9"));  // 检索字符串中是否存在字符, 返回指定下标, 如果不存在返回-1
+    console.log(str.indexOf("l", 5)); // 第二个参数指定开始查找的位置
+    console.log(str.substring(0, 5))  // 截取从开始位置(包含开始位置)到结束位置(不包含结束位置), 这样做时为了计算机方便
+
+    var boo = true
+    console.log(boo == true)
+    var un = undefined
+    console.log(undefined == undefined) // 相等
+    console.log(null == null) // 相等 // null 其实是引用对象不使用是即可赋值为null, 这里涉及对象回收等问题
+    console.log(undefined == null)  // 相等 // 涉及一套复杂的类型的转换
+    console.log(typeof null)
+  </script>
+</body>
+</html>
