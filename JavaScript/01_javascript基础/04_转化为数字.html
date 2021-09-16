@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 数字隐式类型转换
+    var num = 5;
+    var num2 = "10"
+    console.log("隐式类型转换", typeof (num - num2), num - num2)  // 减法隐式转换为数字
+    console.log("隐式类型转换", typeof (num + num2), num + num2)  // 加法字符串拼接
+
+    // 数字显示类型转换
+    var num3 = "2"
+    var temp = Number(num3)
+    console.log(temp) // 调用Number对象构造方法, 显示转换
+    num3 = true
+    console.log(Number(num3)) // 可以转换, 1
+    num3 = false
+    console.log(Number(num3)) // 0
+    num3 = null
+    console.log(Number(num3)) // 可以转换， 0
+    num3 = "10e5"
+    console.log(Number(num3)) // 科学计数法可以转换 
+    num3 = "123.123123"
+
+    console.log("--------------------")
+    num3 = "xay"
+    console.log(Number(num3))   // 无法转换, 返回NaN Not a Number
+    num3 = undefined
+    console.log(Number(num3)) // undefined不可转换, NaN
+    
+    console.log("--------------------")
+    // parseInt() 库函数, 把一个字符串按照整数方式进行解析, 如果开头部分可以解析只解析一部分, 如果开头不可以则返回NaN
+    num3 = "123123"
+    console.log(parseInt(num3)) // 解析出数字
+    num3 = "123.12312"
+    console.log(parseInt(num3)) // 解析前段数字, 遇到.不解析后面
+    num3 = "1000px"
+    console.log(parseInt(num3)) // 只解析开头是数字的部分
+    num3 = "x123"
+    console.log(parseInt(num3)) // 返回NaN
+    num3 = ""
+    console.log(parseInt(num3)) // 空字符串返回NaN
+    num3 = "0xA0"
+    console.log(parseInt(num3)) // 可以直接解析16进制
+    num3 = "F4"
+    console.log(parseInt(num3, 16)) // parseInt可以指定进制位, 同理8进制也可以
+    num3 = undefined
+    console.log(parseInt(num3)) // undefined, null, false都是NaN
+    /***
+     * 那么如何记忆呢
+     * Number和parseInt的区别
+     * Number: 本质上是否能转换成数字
+     * parseInt: 看开头的部分更像数字
+     *  1. Number可以, parseInt不可以: false, null, ""
+     *  2. Number不可以, parseInt可以: 数字开头的字符串
+     *  3. Number, parseInt都不可以: undefined, 字母开头的
+     * ***/
+
+    //  parseFloat, 库函数, 用于浮点数或者科学计数法的
+    num3 = "10.000"
+    console.log(parseFloat(num3)) // 小数位为0, 直接去掉
+    num3 = "10"
+    console.log(parseFloat(num3))
+    num3 = "1.2E5"
+    console.log(parseFloat(num3)) // 科学计数法可以
+    num3 = "1.2131aa"
+    console.log(parseFloat(num3)) //截取属于浮点数的
+
+    // isNaN, 如果不是数, 则会自动调用Number库函数,
+    console.log(isNaN("12321")) // 会隐式转换
+    console.log(isNaN("1231.12312")) // 会隐式转换
+    console.log(isNaN(undefined), isNaN(false), isNaN(true), isNaN(null), isNaN(""))  // 同理调用隐式转换
+  </script>
+</body>
+</html>

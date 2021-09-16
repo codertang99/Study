@@ -123,6 +123,9 @@ console.log(typeof null)	// 实际上是一个object
 - 需要注意以下比较
 
   ```javascript
+  console.log(0/0)	// 是一个NaN
+  console.log(1/0)	// 是一个Infinity
+  
   // 看上去不相等, 但是是相等的
   console.log("undefined == null", undefined == null)
   console.log("false == 0", false == 0)
@@ -143,11 +146,238 @@ console.log(typeof null)	// 实际上是一个object
 
 
 
+### 流程控制
+
+- 顺序结构
+- 分支结构
+- 循环结构
 
 
 
+### 类型转换
+
+- 转换为数值
+
+  ```javascript
+  // 数字隐式类型转换
+  var num = 5;
+  var num2 = "10"
+  console.log("隐式类型转换", typeof (num - num2), num - num2)  // 减法隐式转换为数字
+  console.log("隐式类型转换", typeof (num + num2), num + num2)  // 加法字符串拼接
+  
+  // 数字显示类型转换
+  var num3 = "2"
+  var temp = Number(num3)
+  console.log(temp) // 调用Number对象构造方法, 显示转换
+  num3 = true
+  console.log(Number(num3)) // 可以转换, 1
+  num3 = false
+  console.log(Number(num3)) // 0
+  num3 = null
+  console.log(Number(num3)) // 可以转换， 0
+  num3 = "10e5"
+  console.log(Number(num3)) // 科学计数法可以转换 
+  num3 = ""
+  console.log(Number(num3))
+  console.log("--------------------")
+  num3 = "xay"
+  console.log(Number(num3))   // 无法转换, 返回NaN Not a Number
+  num3 = undefined
+  console.log(Number(num3)) // undefined不可转换, NaN
+  
+  console.log("--------------------")
+  // parseInt() 库函数, 把一个字符串按照整数方式进行解析, 如果开头部分可以解析只解析一部分, 如果开头不可以则返回NaN
+  num3 = "123123"
+  console.log(parseInt(num3)) // 解析出数字
+  num3 = "123.12312"
+  console.log(parseInt(num3)) // 解析前段数字, 遇到.不解析后面
+  num3 = "1000px"
+  console.log(parseInt(num3)) // 只解析开头是数字的部分
+  num3 = "x123"
+  console.log(parseInt(num3)) // 返回NaN
+  num3 = ""
+  console.log(parseInt(num3)) // 空字符串返回NaN
+  num3 = "0xA0"
+  console.log(parseInt(num3)) // 可以直接解析16进制
+  num3 = "F4"
+  console.log(parseInt(num3, 16)) // parseInt可以指定进制位, 同理8进制也可以
+  num3 = undefined
+  console.log(parseInt(num3)) // undefined, null, false都是NaN
+  /***
+   * 那么如何记忆呢
+   * Number和parseInt的区别
+   * Number: 本质上是否能转换成数字
+   * parseInt: 看开头的部分更像数字
+   *  1. Number可以, parseInt不可以: false, null, ""
+   *  2. Number不可以, parseInt可以: 数字开头的字符串
+   *  3. Number, parseInt都不可以: undefined, 字母开头的
+   * ***/
+  
+  //  parseFloat, 库函数, 用于浮点数或者科学计数法的
+  num3 = "10.000"
+  console.log(parseFloat(num3)) // 小数位为0, 直接去掉
+  num3 = "10"
+  console.log(parseFloat(num3))
+  num3 = "1.2E5"
+  console.log(parseFloat(num3)) // 科学计数法可以
+  num3 = "1.2131aa"
+  console.log(parseFloat(num3)) //截取属于浮点数的
+  
+  // isNaN, 如果不是数, 则会自动调用Number库函数,
+  console.log(isNaN("12321")) // 会隐式转换
+  console.log(isNaN("1231.12312")) // 会隐式转换
+  console.log(isNaN(undefined), isNaN(false), isNaN(true), isNaN(null), isNaN(""))  // 同理调用隐式转换
+  ```
+
+- 转化为字符串
+
+  ```javascript
+  // 隐式类型转换
+  var str = ""
+  console.log(typeof (str + 000000), (str + 000000))  // 转换为0
+  console.log(typeof (str + null), (str + null))  // 转换为字符串
+  
+  // 显示类型转换
+  // String, 库函数, 生成字符串
+  console.log(typeof String(null), String(null))
+  console.log(typeof String(2), String(2))
+  console.log(typeof String(false), String(false))
+  
+  // toString(), 成员函数
+  str = 80
+  console.log(str.toString())   // 调用成员方法转换字符串
+  console.log(str.toString(16)) // 可以传入进制参数, 转换指定进行的
+  str = true
+  console.log(str.toString())	// 转换字符串true
+  
+  // undefined, null不可以调用toString()
+  str = null
+  console.log(str.toString()) // 报错
+  str = undefined
+  console.log(str.toString())
+  ```
+  
+- 转换为boolean
+
+  ```javascript
+  // 隐式类型转换
+  var b = !0
+  console.log(typeof b, b)
+  b = !!2
+  console.log(typeof b, b)
+  console.log("-------------")
+  
+  // undefined, null, "", NaN 相当于false
+  b = !undefined
+  console.log(typeof b, b)
+  b = !null
+  console.log(typeof b, b)
+  b = !""
+  console.log(typeof b, b)
+  b = !NaN
+  console.log(typeof b, b)
+  
+  // && || 不参与隐式类型转换
+  console.log(undefined && true)
+  
+  // Boolean, 库函数, 显示类型转换
+  b = Boolean("")
+  console.log(typeof b, b)
+  ```
 
 
+
+### 数组
+
+JavaScript数组是弱类型的, 数组声明的两种方式, 1.字面量方式 2.构造函数的方式
+
+```javascript
+// 字面量的方式声明数组
+// 1. 如何向数组中添加元素
+// 2. 如何访问数组中的某个元素
+// 3. 数组的初始化
+// 4. 数组初始化时, 只初始化个数, 具体的值以后再添加
+// 5. 数组中可以存放任意的元素
+var a = [1,,,,,,10]
+console.log(typeof a, a)
+a = [1,"@3",null, undefined, Object, true, [], {}, Array, Function]
+console.log(a)
+
+// 使用构造函数的方式生成数组
+var b = new Array(1,23,4,5)
+console.log(typeof b, b)
+var b2 = new Array(9) // 这种方法初始化了元素的个数, 其实是稀疏的
+console.log(b2)
+
+console.log("---------------")
+// 数组的索引从 0 ~~  length - 1
+console.log(b2.length)
+// 如果向一个不在范围内的索引写入数据, 那么这个位置会产生存储, 同时调整length
+b2[1.5] = 88  // 数组的底层是类似key-value形式的mapper
+b2["123"] = 99
+b2["ajdlks"] = "Adfds"
+b2[Object] = "12312"
+console.log(b2) // 数字, 字符串都可以作为索引, 能parse被解析成数字, length只会受到整数的影响
+// 应用:
+//  1. 老老实实的使用数组, 同时配合length
+//  2. 使用key-value, 全部使用字符串, length会失效
+console.log("---------------")
+// 访问数组中没有被初始化的位置, 第一不会报错, 同时返回undefined
+// 数组是一个引用类型的变量
+// 如何判断一个变量是一个数组, 利用constructor方式中的属性
+console.log(typeof b2)
+console.log(b2.constructor.name === "Array")
+/****
+     * 数组轮询的方式
+     * 1. for - length, 使用length的方式, 在key-value方式, length失效情况下无效
+     * 2. for - in, 可以轮询任何方式的数组
+     * 3. forEach, 只能轮询数字索引, 非稀疏元素, 不依赖length
+     * ****/
+console.log("---------------")
+
+/***
+     *  数组的成员函数
+     *    1. concat: 把两个数组合并成一个
+     *    2. join: 把数组串行化为一个字符串
+     *    3. sort: 把数组按照字符串的ASCII码进行排序, 在原数组上操作, 不生成新的数组
+     *    4. push: 在数组尾部添加一个元素, length有效
+     *    5. pop: 在数组尾部的元素去掉, 同时返回删除元素, length有效
+     *    6: shift: 在数组头部的元素去掉, 同时返回删除元素, length有效
+     *    7: unshift: 在数组头部添加一个元素, length有效
+     * **/
+var a1 = [1, 2, 3]
+var a2 = [6, 5, 4]
+var a = a1.concat(a2)
+console.log(a)
+console.log("concat");
+
+var a = [1,2,4,5,6,7,7]
+console.log(a.join(" "))
+console.log("join")
+
+var b = [1,2,45,2,234,7]
+console.log(b.join(","))
+console.log(b.sort()) // 引用类型操作
+console.log(b.join(","))
+console.log("-----------")
+// 按照数字排序
+console.log(b.sort((a, b) => {
+    console.log(a, b)
+    return a - b
+}))
+console.log("sort")
+```
+
+
+
+### 内存问题
+
+基本类型和引用类型-对应-栈内存和堆内存
+
+- 原始数据类型变量的内存在栈中分配, 数据存在栈中
+- 引用数据类型变量的内存在栈中分配, 实际内存在堆中分配, 变量的内存中只存储了内存地址(在堆中的)
+- 拷贝问题, 原始数据类型直接拷贝数据, 引用数据类型拷贝的是堆中的内存地址
+- 计数器: 引用类型, 每个变量存储了它的地址, 那么计数器+1, 反之-1, 当计数器为0时, 内存被释放
 
 
 

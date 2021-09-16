@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 隐式类型转换
+    var str = ""
+    console.log(typeof (str + 000000), (str + 000000))  // 转换为0
+    console.log(typeof (str + null), (str + null))  // 转换为字符串
+
+    // 显示类型转换
+    // String, 库函数, 生成字符串
+    console.log(typeof String(null), String(null))
+    console.log(typeof String(2), String(2))
+    console.log(typeof String(false), String(false))
+    console.log(String(undefined))
+
+    // toString(), 成员函数
+    str = 80
+    console.log(str.toString())   // 调用成员方法转换字符串
+    console.log(str.toString(16)) // 可以传入进制参数, 转换指定进行的
+
+    // undefined, null不可以调用toString()
+    str = null
+    // console.log(str.toString()) // 报错
+    str = undefined
+    // console.log(str.toString())
+
+    console.log("------------------")
+
+    str = "10101001"
+    console.log(parseInt(str, 2))
+    var num = parseInt(str, 2)
+    if(!isNaN(num)) {
+      num = num.toString(16)
+      console.log(num)
+    }
+  </script>
+</body>
+</html>

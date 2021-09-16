@@ -39,3 +39,5 @@ class Reactangle extends Shape {
 }
 
 console.log(makeArea(new Reactangle(10, 20)))
+
+export {}

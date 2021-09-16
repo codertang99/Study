@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 隐式类型转换
+    var b = !0
+    console.log(typeof b, b)
+    b = !!2
+    console.log(typeof b, b)
+    console.log("-------------")
+
+    // undefined, null, "", NaN 相当于false
+    b = !undefined
+    console.log(typeof b, b)
+    b = !null
+    console.log(typeof b, b)
+    b = !""
+    console.log(typeof b, b)
+    b = !NaN
+    console.log(typeof b, b)
+
+    // && || 不参与隐式类型转换
+    console.log(undefined && true)
+
+    // Boolean, 库函数, 显示类型转换
+    b = Boolean("")
+    console.log(typeof b, b)
+  </script>
+</body>
+</html>

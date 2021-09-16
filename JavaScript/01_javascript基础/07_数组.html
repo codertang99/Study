@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 字面量的方式声明数组
+    // 1. 如何向数组中添加元素
+    // 2. 如何访问数组中的某个元素
+    // 3. 数组的初始化
+    // 4. 数组初始化时, 只初始化个数, 具体的值以后再添加
+    // 5. 数组中可以存放任意的元素
+    var a = [1,,,,,,,10]
+    console.log(typeof a, a)
+    a = [1,"@3",null, undefined, Object, true, [], {}, Array, Function]
+    console.log(a)
+
+    // 使用构造函数的方式生成数组
+    var b = new Array(1,23,4,5)
+    console.log(typeof b, b)
+    var b2 = new Array(9) // 这种方法初始化了元素的个数, 其实是稀疏的
+    console.log(b2)
+
+    console.log("---------------")
+    // 数组的索引从 0 ~~  length - 1
+    console.log(b2.length)
+    // 如果向一个不在范围内的索引写入数据, 那么这个位置会产生存储, 同时调整length
+    b2[1.5] = 88  // 数组的底层是类似key-value形式的mapper
+    b2["123"] = 99
+    b2["ajdlks"] = "Adfds"
+    b2[Object] = "12312"
+    console.log(b2) // 数字, 字符串都可以作为索引, 能parse被解析成数字, length只会受到整数的影响
+    // 应用:
+    //  1. 老老实实的使用数组, 同时配合length
+    //  2. 使用key-value, 全部使用字符串, length会失效
+    console.log("---------------")
+    // 访问数组中没有被初始化的位置, 第一不会报错, 同时返回undefined
+    // 数组是一个引用类型的变量
+    // 如何判断一个变量是一个数组, 利用constructor方式中的属性
+    console.log(typeof b2)
+    console.log(b2.constructor.name === "Array")
+    /****
+     * 数组轮询的方式
+     * 1. for - length, 使用length的方式, 在key-value方式, length失效情况下无效
+     * 2. for - in, 可以轮询任何方式的数组
+     * 3. forEach, 只能轮询数字索引, 非稀疏元素, 不依赖length
+     * ****/
+    console.log("---------------")
+    
+    /***
+     *  数组的成员函数
+     *    1. concat: 把两个数组合并成一个
+     *    2. join: 把数组串行化为一个字符串
+     *    3. sort: 把数组按照字符串的ASCII码进行排序, 在原数组上操作, 不生成新的数组
+     *    4. push: 在数组尾部添加一个元素, length有效
+     *    5. pop: 在数组尾部的元素去掉, 同时返回删除元素, length有效
+     *    6: shift: 在数组头部的元素去掉, 同时返回删除元素, length有效
+     *    7: unshift: 在数组头部添加一个元素, length有效
+     * **/
+    var a1 = [1, 2, 3]
+    var a2 = [6, 5, 4]
+    var a = a1.concat(a2)
+    console.log(a)
+    console.log("concat");
+
+    var a = [1,2,4,5,6,7,7]
+    console.log(a.join(" "))
+    console.log("join")
+
+    var b = [1,2,45,2,234,7]
+    console.log(b.join(","))
+    console.log(b.sort()) // 引用类型操作
+    console.log(b.join(","))
+    console.log("-----------")
+    // 按照数字排序
+    console.log(b.sort((a, b) => {
+      console.log(a, b)
+      return a - b
+    }))
+    console.log("sort")
+
+
+  </script>
+</body>
+</html>
