@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var a = [1, 2, 3, 4, 5]
+    console.log(a.join(","))
+    a.length = 2
+    console.log(a.join(","))
+    a.length = 0
+    console.log(a)
+
+    /***
+     *  面试题: 有几种清空数组的方法
+     *  1. array.length = 0
+     *  2. array.splice(0)
+     *  3. pop、shift
+     *  4. array = [] 有隐患
+     * **/
+
+    var b = [
+      [
+        [1, 2, 3, 4, 5],[1, 2, 3, 4, 5],[1, 2, 3, 4, 5],[1, 2, 3, 4, 5]
+      ], 
+      [
+        [1, 2, 3, 4, 5],[1, 2, 3, 4, 5],[1, 2, 3, 4, 5],[1, 2, 3, 4, 5]
+      ],
+      [
+        [1, 2, 3, 4, 5],[1, 2, 3, 4, 5],[1, 2, 3, 4, 5],[1, 2, 3, 4, 5]
+      ]
+    ]
+    console.log(b)
+    console.log(new Array(new Array(new Array(1, 2, 3, 4, 5))))
+  </script>
+</body>
+</html>

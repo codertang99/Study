@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 函数的声明
+    function f() {
+      return;
+    }
+
+    
+
+    // 函数的表达式
+    var f1 = function () {
+      return 1;
+    }
+    console.log(f1());
+    // console.log(f1)
+    // 函数表达式不会污染名字空间, 这也是为什么很多js库使用函数表达式
+
+    (function a() {
+      var a = 1;
+      var b = 2;
+      console.log(a + b)
+    })()
+  </script>
+</body>
+</html>

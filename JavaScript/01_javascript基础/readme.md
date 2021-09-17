@@ -239,7 +239,7 @@ console.log(typeof null)	// 实际上是一个object
   
   // 显示类型转换
   // String, 库函数, 生成字符串
-  console.log(typeof String(null), String(null))
+  console.log(typeof String(null), String(null))	
   console.log(typeof String(2), String(2))
   console.log(typeof String(false), String(false))
   
@@ -328,23 +328,28 @@ console.log("---------------")
 console.log(typeof b2)
 console.log(b2.constructor.name === "Array")
 /****
-     * 数组轮询的方式
-     * 1. for - length, 使用length的方式, 在key-value方式, length失效情况下无效
-     * 2. for - in, 可以轮询任何方式的数组
-     * 3. forEach, 只能轮询数字索引, 非稀疏元素, 不依赖length
-     * ****/
+ * 数组轮询的方式
+ * 1. for - length, 使用length的方式, 在key-value方式, length失效情况下无效
+ * 2. for - in, 可以轮询任何方式的数组
+ * 3. forEach, 只能轮询数字索引, 非稀疏元素, 不依赖length
+ * ****/
 console.log("---------------")
 
 /***
-     *  数组的成员函数
-     *    1. concat: 把两个数组合并成一个
-     *    2. join: 把数组串行化为一个字符串
-     *    3. sort: 把数组按照字符串的ASCII码进行排序, 在原数组上操作, 不生成新的数组
-     *    4. push: 在数组尾部添加一个元素, length有效
-     *    5. pop: 在数组尾部的元素去掉, 同时返回删除元素, length有效
-     *    6: shift: 在数组头部的元素去掉, 同时返回删除元素, length有效
-     *    7: unshift: 在数组头部添加一个元素, length有效
-     * **/
+ *  数组的成员函数
+ *    1. concat: 把两个数组合并成一个
+ *    2. join: 把数组串行化为一个字符串
+ *    3. sort: 把数组按照字符串的ASCII码进行排序, 在原数组上操作, 不生成新的数组
+ *    4. push: 在数组尾部添加一个元素, length有效
+ *    5. pop: 在数组尾部的元素去掉, 同时返回删除元素, length有效
+ *    6. shift: 在数组头部的元素去掉, 同时返回删除元素, length有效
+ *    7. unshift: 在数组头部添加一个元素, length有效
+ *	  9. slice: 从数组中选择一部分元素, 拷贝, 生成新的数组, 原数组不受影响, (start, [end]), 正数从0开始, 如果是负数, 从1开始倒数
+ *    10. splice: 从数组中截取一部分元素, 原数组受到影响,splice(start)从start到结尾
+ 		  splice(start, length)从start开始length
+ 		  splice(start, length, item1, item2, item3...)item从start位置添加
+ 	  11. delete: delete[index],删除数组中的某个元素, 被删除元素直接empty, 数组变成稀疏
+  * **/
 var a1 = [1, 2, 3]
 var a2 = [6, 5, 4]
 var a = a1.concat(a2)
@@ -381,3 +386,27 @@ console.log("sort")
 
 
 
+### 数组的性质
+
+```javascript
+var a = [1, 2, 3, 4, 5]
+console.log(a.join(","))
+a.length = 2
+console.log(a.join(","))
+a.length = 0
+console.log(a)
+
+/***
+ *  面试题: 有几种清空数组的方法
+ *  1. array.length = 0
+ *  2. array.splice(0)
+ *  3. pop、shift
+ *  4. array = [] 有隐患
+ * **/
+```
+
+
+
+### 函数
+
+function 函数名([形参]){函数体}， 编写一个函数要考虑其各种情况, 并编写一些测试用例
