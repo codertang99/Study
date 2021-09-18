@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 字面量
+    var obj = {};
+
+    // 系统构造函数
+    var obj1 = new Object()
+
+    // 书
+    obj.name = "book"
+    obj.pageNumber = 300
+
+    var author = {}
+    author.firstName = "Napoleno"
+    author.familyName = "Wang"
+    obj.author = author
+
+    obj.query = function() {
+      console.log("query")
+    }
+    obj.addPage = function() {
+      this.pageNumber++
+      console.log("pageNumber")
+    }
+    obj.query()
+    obj.addPage()
+
+    var obj = {
+      name: "book",
+      pageNumber: 300,
+      author: {
+        firstName: "tang",
+        familyName: "T"
+      },
+      query: function() {
+        console.log("query")
+      },
+      addPage: function() {
+        this.pageNumber += 1
+        console.log("pageNumber")
+      }
+    }
+
+    // 2. 一个没有定义的变量直接赋值, 会产生怎样的后果(直接挂载在windows上)
+    function fn() {
+      aaa = 222;
+    }
+    fn()
+    console.log(aaa)
+    // 发生了什么
+    // 1. 有个对象叫windows
+    // 2. 所有在脚本中(不包括函数), 通过var定义的变量都挂载在window上
+    // 3. 在任意位置, 一个变量赋值都可以看作是在windows中寻找这个变量
+    var abc = 123;
+
+    console.log(obj.hasOwnProperty("pageNumber")) // 查找属性是否存在对象中
+    console.log(obj.toString())
+
+    console.log(obj.propertyIsEnumerable("name")) // 判断属性在对象中是否可枚举的
+    console.log(obj.propertyIsEnumerable("toString"))
+    obj.__proto__.ccc = "!23"
+    console.log(obj)
+
+  </script>
+</body>
+</html>

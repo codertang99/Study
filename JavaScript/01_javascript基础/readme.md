@@ -413,3 +413,25 @@ function 函数名([形参]){函数体}， 编写一个函数要考虑其各种�
 
 函数字面量和函数表达式, 函数表达式本身不占用名字空间, 立即执行函数
 
+
+
+### 面向对象
+
+```javascript
+// 2. 一个没有定义的变量直接赋值, 会产生怎样的后果(直接挂载在window上)
+function fn() {
+    aaa = 222;
+}
+fn()
+console.log(aaa)
+// 发生了什么
+// 1. 有个对象叫window
+// 2. 所有在脚本中(不包括函数), 通过var定义的变量都挂载在window上
+// 3. 在任意位置, 一个变量赋值都可以看作是在window中寻找这个变量
+var abc = 123;
+console.log(obj.propertyIsEnumerable("name")) // 判断属性在对象中是否可枚举的
+console.log(obj.hasOwnProperty("pageNumber")) // 查找属性是否存在对象中
+```
+
+
+
