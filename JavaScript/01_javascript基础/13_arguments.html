@@ -23,9 +23,13 @@
       console.log(a, b, c, arguments) 
       arguments[2] = 1000
       console.log(a, b, c, arguments) 
+      a = 10000
+      console.log(a, b, c, arguments) 
     }
-    fn(1)
-
+    var c = 1
+    fn(c)
+    console.log(c)
+    console.log("--------------")
     var ccc = function (n) {
       if(n === 1) {
         return n

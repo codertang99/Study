@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 1. 函数中所有的变量声明, 在函数的预编译阶段完成, 所有变量的声明与实际的书写位置无关
+    // fn()
+    function fn() {
+      console.log(a)
+      var a = 123
+      console.log(a)
+    }
+
+    // 2. 函数中所有的函数声明, 在函数的预编译阶段完成, 所有函数的声明与实际的书写位置无关
+    function fn() {
+      console.log(finner)
+      function finner() {
+        console.log("finner")
+      }
+      console.log(finner)
+    }
+
+    // 3. 函数中如果变量和函数同名, 那么函数将覆盖同名变量
+    function fn() {
+      console.log(finner)
+      var finner = "hahaha"
+      function finner() {
+        console.log("finner")
+      }
+    }
+
+    // 4. 函数中只有函数能覆盖变量, 变量无法覆盖函数
+    function fn() {
+      console.log(finner)
+      function finner() {
+        console.log("finner")
+      }
+      var finner = "hahaha"
+      console.log(finner)
+    }
+
+    // 5. 函数中, 同名函数, 后面的函数覆盖前面的函数声明
+    // 6. 当函数预编译后遇到需要访问的变量或函数, 优先考虑自己AO中定义中的变量和函数, 
+    // 如果找不到, 才会在其定义的上一层AO中寻找, 直至到GO, 直至报错
+    var scope = "global"
+    function fn() {
+      console.log(1, scope)
+      var scope = "local"
+      console.log(2, scope)
+    }
+    fn()
+    console.log(3, scope)
+
+
+    console.log("练习, ------------------")
+
+    console.log(1, scopes) // undefined
+    var scopes = "global"
+    function fnc() {
+      var scopes = "1-local"
+      function fnc2() {
+        console.log(2, scopes) // undefined
+        var scopes = "2-local"
+        console.log(3, scopes) // 2-local
+      }
+      fnc2()
+      console.log(4, scopes) // 1-local
+    }
+    fnc()
+    console.log(5, scopes) // global
+
+    /***
+     *  GO -> 
+     *    scopes -> global
+     *    fnc -> function  
+     * 
+     *  AO1 ->
+     *    scopes -> 1-local
+     *    fnc2 -> function
+     *  AO2 -> 
+     *    scopes -> 2-local
+     * **/
+
+
+     function test(x, x) {
+       console.log(x) // function
+       x = 5
+       console.log(arguments) // [12, 5]
+       function x() {
+         console.log("haha")
+       }
+     }
+
+     test(12, 13)
+
+     /**  
+      *   GO ->
+      *     test -> function
+      *   AO -> 
+      *     arguments -> [12, 5]
+      *     x -> 12 -> 13 -> function -> 5
+      * **/
+      console.log("---------------")
+      b = "cba"
+      function a(a, a) {
+        console.log(1, a)  // function
+        console.log(2, b)  // undefined
+        var b = "abc"
+        a()
+        function a() {
+          console.log(3, a)  // function
+          console.log(4, b)  // abc
+        }
+      }
+      a(5, 10)
+
+      /***
+       *  GO ->
+       *    a -> function
+       *    b -> cba
+       *  AO1 ->
+       *    arguments -> [5, function]
+       *    a -> 5 -> 10 -> function
+       *    b -> abc
+       *  AO2 ->
+       *    arguments -> []
+       * **/
+
+  </script>
+</body>
+</html>

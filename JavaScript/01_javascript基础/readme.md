@@ -600,5 +600,176 @@ var str2 = str1.concat("hello") // 明明是基本数据类型为什么又可以
 
 
 
+### 预编译
 
+预编译-脚本
+
+```javascript
+// 脚本的预编译
+// 1. 没有var的变量, 都不是变量的声明, 全部都认为是window的全部变量, 不参与预编译
+// console.log(aaa)
+aaa = "123"
+console.log(aaa)
+
+// 2. 即使aa在函数中, aa也是全局变量, 是运行时生效, 不是预编译时生效
+// console.log(aa)
+test()   // 直接调用不会出错
+function test() {
+    aa = 123
+    console.log("test")
+}
+console.log(aa)
+
+// 3. 脚本中所有的变量声明, 在脚本的预编译阶段完成, 所有变量的声明与实际的书写的位置无关
+console.log(a)
+var a = 5
+console.log(a)
+
+// 4.  脚本中所有的函数声明, 在脚本的预编译阶段完成, 所有函数的声明与实际的书写的位置无关
+console.log(f)
+function f() {
+    console.log("object")
+}
+
+// 5. 脚本中如果函数和变量同名, 那么在预编译过程中函数将覆盖变量
+console.log(ss)
+var ss = 123
+console.log(ss)
+function ss() {
+    console.log("hello")
+}
+console.log(ss)
+console.log("---------------")
+// 6. 脚本中如果变量与函数同名, 函数可以覆盖变量, 但是变量是无法覆盖函数的
+console.log(f)
+function f() {
+    console.log("hhhh")
+}
+var f = 123
+console.log(f)
+
+console.log("--------------")
+// 7. 脚本中如果有两个或两个以上的同名函数, 在最后的函数会覆盖前面的, 并且参数个数是忽略的, JS不支持重载
+console.log(fn)
+function fn(x) {
+    console.log(x)
+}
+function fn(x, y, z) {
+    console.log(x, y, z)
+}
+```
+
+预编译-函数
+
+```javascript
+// 1. 函数中所有的变量声明, 在函数的预编译阶段完成, 所有变量的声明与实际的书写位置无关
+// fn()
+function fn() {
+    console.log(a)
+    var a = 123
+    console.log(a)
+}
+
+// 2. 函数中所有的函数声明, 在函数的预编译阶段完成, 所有函数的声明与实际的书写位置无关
+function fn() {
+    console.log(finner)
+    function finner() {
+        console.log("finner")
+    }
+    console.log(finner)
+}
+
+// 3. 函数中如果变量和函数同名, 那么函数将覆盖同名变量
+function fn() {
+    console.log(finner)
+    var finner = "hahaha"
+    function finner() {
+        console.log("finner")
+    }
+}
+
+// 4. 函数中只有函数能覆盖变量, 变量无法覆盖函数
+function fn() {
+    console.log(finner)
+    function finner() {
+        console.log("finner")
+    }
+    var finner = "hahaha"
+    console.log(finner)
+}
+
+// 5. 函数中, 同名函数, 后面的函数覆盖前面的函数声明
+// 6. 当函数预编译后遇到需要访问的变量或函数, 优先考虑自己AO中定义中的变量和函数, 
+// 如果找不到, 才会在其定义的上一层AO中寻找, 直至到GO, 直至报错
+var scope = "global"
+function fn() {
+    console.log(1, scope)
+    var scope = "local"
+    console.log(2, scope)
+}
+fn()
+console.log(3, scope)
+
+
+console.log("练习, ------------------")
+
+console.log(1, scopes) // undefined
+var scopes = "global"
+function fnc() {
+    var scopes = "1-local"
+    function fnc2() {
+        console.log(2, scopes) // undefined
+        var scopes = "2-local"
+        console.log(3, scopes) // 2-local
+    }
+    fnc2()
+    console.log(4, scopes) // 1-local
+}
+fnc()
+console.log(5, scopes) // global
+
+/***
+     *  GO -> 
+     *    scopes -> global
+     *    fnc -> function  
+     * 
+     *  AO1 ->
+     *    scopes -> 1-local
+     *    fnc2 -> function
+     *  AO2 -> 
+     *    scopes -> 2-local
+     * **/
+```
+
+### 作用域和作用域链
+
+```javascript
+// 作用域链
+// 1. 函数外部对内部可见
+// 2. 函数内部对外部不可见
+// 3. 函数内部和外部都有的时候内部优先
+var scope = "scope"
+function fn() {
+    var scope = "l"
+    }
+fn()
+
+// 作用域是函数级别的
+var sco = "g"
+if(true) {
+    console.log(sco)
+    var sco = "l"
+    console.log(sco)
+}
+console.log(sco)
+console.log("---------------")
+// 循环的大括号无法影响函数的作用域
+for(var i=0; i<5; i++) {
+}
+console.log(i)
+```
+
+
+
+<img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fupload-images.jianshu.io%2Fupload_images%2F2149677-192a1dac90d296f4.png&refer=http%3A%2F%2Fupload-images.jianshu.io&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1634655117&t=8d2855f3a1f660d11eee7f57eb4bf541" style="zoom:150%;" />
 

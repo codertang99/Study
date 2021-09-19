@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 作用域链
+    // 1. 函数外部对内部可见
+    // 2. 函数内部对外部不可见
+    // 3. 函数内部和外部都有的时候内部优先
+    var scope = "scope"
+    function fn() {
+      var scope = "l"
+    }
+    fn()
+
+    // 作用域是函数级别的
+    var sco = "g"
+    if(true) {
+      console.log(sco)
+      var sco = "l"
+      console.log(sco)
+    }
+    console.log(sco)
+    console.log("---------------")
+    // 循环的大括号无法影响函数的作用域
+    for(var i=0; i<5; i++) {
+    }
+    console.log(i)
+  </script>
+</body>
+</html>
