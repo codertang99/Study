@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /***
+     * 如果判断一个函数的类型
+     * 实际上所有的引用类型都是object的
+     * 但是有一个奇怪的问题就是 typeof null实际上也是一个object
+     * function typeof 的时候不是object, 是一个function
+     * 同样通过constructor.name方式判断是一个Function
+     * **/
+    function fn() {
+      console.log("hello")
+    }
+
+    // 这是一种方式 typeof === function
+    console.log(typeof fn)
+    if(typeof fn === "function") {
+      console.log("is function")
+    } else {
+      console.log("not")
+    }
+
+    // 第二种方式 通过constructor.name === Function
+    console.log(fn.constructor.name)
+    if(fn.constructor.name === "Function") {
+      console.log("is function")
+    } else {
+      console.log("not")
+    }
+  </script>
+</body>
+</html>

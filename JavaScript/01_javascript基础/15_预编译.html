@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 脚本的预编译
+    // 1. 没有var的变量, 都不是变量的声明, 全部都认为是window的全部变量, 不参与预编译
+    // console.log(aaa)
+    aaa = "123"
+    console.log(aaa)
+
+    // 2. 即使aa在函数中, aa也是全局变量, 是运行时生效, 不是预编译时生效
+    // console.log(aa)
+    test()   // 直接调用不会出错
+    function test() {
+      aa = 123
+      console.log("test")
+    }
+    console.log(aa)
+
+    // 3. 脚本中所有的变量声明, 在脚本的预编译阶段完成, 所有变量的声明与实际的书写的位置无关
+    console.log(a)
+    var a = 5
+    console.log(a)
+
+    // 4.  脚本中所有的函数声明, 在脚本的预编译阶段完成, 所有函数的声明与实际的书写的位置无关
+    console.log(f)
+    function f() {
+      console.log("object")
+    }
+
+    // 5. 脚本中如果函数和变量同名, 那么在预编译过程中函数将覆盖变量
+    console.log(ss)
+    var ss = 123
+    console.log(ss)
+    function ss() {
+      console.log("hello")
+    }
+    console.log(ss)
+    console.log("---------------")
+    // 6. 脚本中如果变量与函数同名, 函数可以覆盖变量, 但是变量是无法覆盖函数的
+    console.log(f)
+    function f() {
+      console.log("hhhh")
+    }
+    var f = 123
+    console.log(f)
+
+    console.log("--------------")
+    // 7. 脚本中如果有两个或两个以上的同名函数, 在最后的函数会覆盖前面的, 并且参数个数是忽略的, JS不支持重载
+    console.log(fn)
+    function fn(x) {
+      console.log(x)
+    }
+    function fn(x, y, z) {
+      console.log(x, y, z)
+    }
+  </script>
+</body>
+</html>

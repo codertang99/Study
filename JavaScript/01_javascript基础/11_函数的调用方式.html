@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /***
+     *  1. 直接调用
+     *  2. 对象调用
+     *  3. 赋值间接调用, 产生this指针问题
+     * **/
+    function f1(x) {
+      console.log(x)
+    }
+    f1("Hello world") // 直接调用
+
+    var obj = {
+      f1: function(x) {
+        console.log(x)
+      }
+    }
+    obj.f1("Hello Obj") // 对象方式调用
+
+    var obj2 = {
+      name1: "tang",
+      f1: function(a, b, c) {
+        console.log(this, this.name1)
+        console.log(a, b, c)
+      }
+    }
+    obj2.f1(1, 2, 3)  // 对象本身调用, this就是本身
+    var fn1 = obj2.f1 // 间接调用赋值调用, 会产生一个this指针的问题
+    fn1(1, 2, 3)  // 间接赋值方式, 实际上var定义变量是添加在window上的, 可以看作window.fn1调用, 所以调用this是window
+
+    // 解决办法, call和apply, 通过call和apply调用, 可以传递this绑定, 但是注意两个方法传递参数的方式不一样
+    fn1.call(obj2, 1, 2, 3)
+    fn1.apply(obj2, [1, 2, 3])
+  </script>
+</body>
+</html>

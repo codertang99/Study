@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 普通工厂模式
+    var person = {}
+    person.createPerson = function(name, age, gender) {
+      var p = {}
+      p.type = "person"
+      p.name = name
+      p.age = age
+      p.gender = gender || "male"
+      p.study = function() {
+        console.log("I am studying")
+      }
+      p.say = function() {
+        console.log("Hello!!!")
+      }
+      return p
+    }
+    var liSi = person.createPerson("lisi", 20)
+    var wangWu = person.createPerson("wangwu", 21, "female")
+
+    // 实际上构造函数只是一种在普通工厂模式下去掉了定义和返回值的通过new 函数名的一种函数
+    // 构造函数产生一个this对象, 并返回this本身
+    function Person(name, age, gender) {
+      this.name = name
+      this.age = age
+      this.gender = gender
+      this.study = function() {
+        console.log("I am studying")
+      }
+      this.say = function() {
+        console.log("Hello!!!")
+      }
+    }
+    
+    var p1 = new Person("lili", 12, "female")
+
+    // 但其实这设计到一个返回值的一个奇怪又混乱的东西
+    // 构造函数添加返回值, 如果返回的是原始类型, 通过直接调用方式返回return, 而new方式返回this
+    // 如果返回是引用类型, 直接调用和new方式都返回return引用
+    function Person1(name, age, gender) {
+      this.name = name
+      this.age = age
+      this.gender = gender
+      this.study = function() {
+        console.log("I am studying")
+      }
+      this.say = function() {
+        console.log("Hello!!!")
+      }
+      return {}
+    }
+    var pp1 = new Person1("t", 1, "male")
+    var pp2 = Person1("t", 1, "male")
+
+    // 在之前我们又有印象一个非常奇怪的, Number, Boolean, String这样的这种叫做包装类
+    // 这相当于给这样包装类开了一个后门, 可以直接调用, 返回基本类型, new方式返回object对象
+    var str = new String(1)
+    // 但这样又有一个非常奇怪的问题
+    var str1 = "123"
+    var str2 = str1.concat("hello") // 明明是基本数据类型为什么又可以调用成员函数
+    // 实际上上面做了三件事情, 会有一个自动包装和拆装的过程
+    // strTemp = new String("123")
+    // strTemp.concat("hello")
+    // str2 = str
+  </script>
+</body>
+</html>

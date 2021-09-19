@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /***
+     * 函数在调用的时候会有一个arguments数组对象
+     * 可以传递不同数量的实参, 在arguments上面接收
+     * 形参和实参是不同的变量, 它们是系统自动绑定的
+     *      在形参和实参数量一致的时候, 它们是绑定的
+     *      在不一致的情况下, 实参少于形参, 修改undefined形参不会绑定, 它们是没有关系的
+     * arguments的calleed代表函数本身
+     * ***/
+    function fn(a, b, c) {
+      console.log(fn.length)  // 函数.length 形参的数量
+      console.log(a, b, c, arguments)  // arguments对象中代表传递进来的实参的数组
+      c = 100
+      console.log(a, b, c, arguments) 
+      arguments[2] = 1000
+      console.log(a, b, c, arguments) 
+    }
+    fn(1)
+
+    var ccc = function (n) {
+      if(n === 1) {
+        return n
+      } else {
+        return n * arguments.callee(n - 1)
+      }
+    }
+
+    var abc = ccc
+
+    console.log(abc(9))
+    
+  </script>
+</body>
+</html>

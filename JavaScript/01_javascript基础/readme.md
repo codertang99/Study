@@ -435,3 +435,170 @@ console.log(obj.hasOwnProperty("pageNumber")) // 查找属性是否存在对象�
 
 
 
+函数的调用方式
+
+```javascript
+  /***
+     *  1. 直接调用
+     *  2. 对象调用
+     *  3. 赋值间接调用, 产生this指针问题, 通过apply和call的方式解决
+     * **/
+function f1(x) {
+    console.log(x)
+}
+f1("Hello world") // 直接调用
+
+var obj = {
+    f1: function(x) {
+        console.log(x)
+    }
+}
+obj.f1("Hello Obj") // 对象方式调用
+
+var obj2 = {
+    name1: "tang",
+    f1: function(a, b, c) {
+        console.log(this, this.name1)
+        console.log(a, b, c)
+    }
+}
+obj2.f1(1, 2, 3)  // 对象本身调用, this就是本身
+var fn1 = obj2.f1 // 间接调用赋值调用, 会产生一个this指针的问题
+fn1(1, 2, 3)  // 间接赋值方式, 实际上var定义变量是添加在window上的, 可以看作window.fn1调用, 所以调用this是window
+
+// 解决办法, call和apply, 通过call和apply调用, 可以传递this绑定, 但是注意两个方法传递参数的方式不一样
+fn1.call(obj2, 1, 2, 3)
+fn1.apply(obj2, [1, 2, 3])
+```
+
+
+
+判断函数的类型
+
+```javascript
+/***
+     * 如果判断一个函数的类型
+     * 实际上所有的引用类型都是object的
+     * 但是有一个奇怪的问题就是 typeof null实际上也是一个object
+     * function typeof 的时候不是object, 是一个function
+     * 同样通过constructor.name方式判断是一个Function
+     * **/
+function fn() {
+    console.log("hello")
+}
+
+// 这是一种方式 typeof === function
+console.log(typeof fn)
+if(typeof fn === "function") {
+    console.log("is function")
+} else {
+    console.log("not")
+}
+
+// 第二种方式 通过constructor.name === Function
+console.log(fn.constructor.name)
+if(fn.constructor.name === "Function") {
+    console.log("is function")
+} else {
+    console.log("not")
+}
+```
+
+
+
+arguments对象数组
+
+```javascript
+/***
+     * 函数在调用的时候会有一个arguments数组对象
+     * 可以传递不同数量的实参, 在arguments上面接收
+     * 形参和实参是不同的变量, 它们是系统自动绑定的
+     *      在形参和实参数量一致的时候, 它们是绑定的
+     *      在不一致的情况下, 实参少于形参, 修改undefined形参不会绑定, 它们是没有关系的
+     * arguments的calleed代表函数本身
+     * ***/
+function fn(a, b, c) {
+    console.log(fn.length)  // 函数.length 形参的数量
+    console.log(a, b, c, arguments)  // arguments对象中代表传递进来的实参的数组
+    c = 100
+    console.log(a, b, c, arguments) 
+    arguments[2] = 1000
+    console.log(a, b, c, arguments) 
+}
+fn(1)
+```
+
+
+
+### 工厂模式、构造函数和包装类
+
+```javascript
+// 普通工厂模式
+var person = {}
+person.createPerson = function(name, age, gender) {
+    var p = {}
+    p.type = "person"
+    p.name = name
+    p.age = age
+    p.gender = gender || "male"
+    p.study = function() {
+        console.log("I am studying")
+    }
+    p.say = function() {
+        console.log("Hello!!!")
+    }
+    return p
+}
+var liSi = person.createPerson("lisi", 20)
+var wangWu = person.createPerson("wangwu", 21, "female")
+
+// 实际上构造函数只是一种在普通工厂模式下去掉了定义和返回值的通过new 函数名的一种函数
+// 构造函数产生一个this对象, 并返回this本身
+function Person(name, age, gender) {
+    this.name = name
+    this.age = age
+    this.gender = gender
+    this.study = function() {
+        console.log("I am studying")
+    }
+    this.say = function() {
+        console.log("Hello!!!")
+    }
+}
+
+var p1 = new Person("lili", 12, "female")
+
+// 但其实这设计到一个返回值的一个奇怪又混乱的东西
+// 构造函数添加返回值, 如果返回的是原始类型, 通过直接调用方式返回return, 而new方式返回this
+// 如果返回是引用类型, 直接调用和new方式都返回return引用
+function Person1(name, age, gender) {
+    this.name = name
+    this.age = age
+    this.gender = gender
+    this.study = function() {
+        console.log("I am studying")
+    }
+    this.say = function() {
+        console.log("Hello!!!")
+    }
+    return {}
+}
+var pp1 = new Person1("t", 1, "male")
+var pp2 = Person1("t", 1, "male")
+
+// 在之前我们又有印象一个非常奇怪的, Number, Boolean, String这样的这种叫做包装类
+// 这相当于给这样包装类开了一个后门, 可以直接调用, 返回基本类型, new方式返回object对象
+var str = new String(1)
+// 但这样又有一个非常奇怪的问题
+var str1 = "123"
+var str2 = str1.concat("hello") // 明明是基本数据类型为什么又可以调用成员函数
+// 实际上上面做了三件事情, 会有一个自动包装和拆装的过程
+// strTemp = new String("123")
+// strTemp.concat("hello")
+// str2 = str
+```
+
+
+
+
+
