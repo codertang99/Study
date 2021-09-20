@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // string是原始类型, String是对象
+    // JS里面没有char型变量
+    var str = "abcde"
+    str[1] = "M"  // 为什么改不了
+    for(var i=0; i<str.length; i++) {
+      console.log(str[i])
+    }
+    str.a = 15  // 包装类
+    console.log(str.a)  // 复制完直接销毁
+
+    // 字符串的常用方法
+    var str = "01234"
+    console.log(str.charAt(2))  // 返回指定位置字符串, index从0开始
+    console.log(String.fromCharCode(107, 108, 109))  // ASCII值, 可以多个
+    console.log(str.concat("hhhh")) // 拼接字符串, 可以多个
+    console.log(str.indexOf("h")) 
+    console.log("---------------")
+    console.log(str)
+    console.log(str.replace("2", "MMMM")) // 替换字符串中某一部分值
+    console.log(str.slice(0, 2))  // 截取一部分, 原字符串不受影响
+    console.log(str.split(""))  // 基于某个字符分割成数组
+
+    console.log("---------------")
+    var str = "abcdefg"
+    // 都是截取字符串
+    console.log(str.substring(1, 4))  // start end
+    console.log(str.substr(1, 4)) // start length
+
+    var str = "AbCd"
+    console.log(str.toLowerCase())
+    console.log(str.toUpperCase())
+    console.log(str)
+    
+    console.log("---------------")
+    var str = " abc "
+    console.log(str.trimLeft())
+    console.log(str.trim()) // 去除两边空格, 或等价的制表符
+    console.log(str.trimRight())  
+  </script>
+</body>
+</html>

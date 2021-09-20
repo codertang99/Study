@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 共有变量 一个变量一个函数
+    // function createCounter() {
+    //   var count = 0
+    //   function counterAdd() {
+    //     count++
+    //     console.log(count)
+    //     return count
+    //   }
+    //   return counterAdd
+    // }
+
+    // var counter = createCounter()
+    // counter()
+
+    // 2. 缓存存储结构, 多个变量, 多个函数
+
+    function create() {
+      var count = 0
+      function counterAdd() {
+        count++
+        console.log(count)
+        return count
+      }
+      
+      function counterAdd2() {
+        count+=2
+        console.log(count)
+        return count
+      }
+
+      function clearAction() {
+        count = 0
+        console.log(count)
+        return count
+      }
+
+      return [counterAdd, counterAdd2, clearAction]
+
+    }
+    
+    var coun = create()
+
+    coun[0]()
+    coun[1]()
+    coun[1]()
+    coun[2]()
+
+    // 模块化 JQuery
+    function createCount() {
+      var count = 0
+      var counter = {
+        counterAdd: function() {
+          count++
+          console.log(count)
+          return count
+        },
+        counterAdd2: function() {
+          count +=2
+          console.log(count)
+          return count
+        },
+        clearAction: function() {
+          count = 0
+          console.log(count)
+          return count
+        }
+      }
+      return counter
+    }
+
+    var cccc = createCount()
+    cccc.counterAdd()
+  </script>
+</body>
+</html>

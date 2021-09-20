@@ -592,7 +592,7 @@ var str = new String(1)
 // 但这样又有一个非常奇怪的问题
 var str1 = "123"
 var str2 = str1.concat("hello") // 明明是基本数据类型为什么又可以调用成员函数
-// 实际上上面做了三件事情, 会有一个自动包装和拆装的过程
+// 实际上上面做了三件事情, 会有一个自动包装和销毁的过程
 // strTemp = new String("123")
 // strTemp.concat("hello")
 // str2 = str
@@ -772,4 +772,196 @@ console.log(i)
 
 
 <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fupload-images.jianshu.io%2Fupload_images%2F2149677-192a1dac90d296f4.png&refer=http%3A%2F%2Fupload-images.jianshu.io&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1634655117&t=8d2855f3a1f660d11eee7f57eb4bf541" style="zoom:150%;" />
+
+
+
+### 闭包
+
+特点: 封装变量, 只暴露函数
+
+应用:
+
+- 共有变量
+- 缓存存储结构
+- 模块化
+
+```javascript
+// 共有变量 一个变量一个函数
+// function createCounter() {
+//   var count = 0
+//   function counterAdd() {
+//     count++
+//     console.log(count)
+//     return count
+//   }
+//   return counterAdd
+// }
+
+// var counter = createCounter()
+// counter()
+
+// 2. 缓存存储结构, 多个变量, 多个函数
+
+function create() {
+    var count = 0
+    function counterAdd() {
+        count++
+        console.log(count)
+        return count
+    }
+
+    function counterAdd2() {
+        count+=2
+        console.log(count)
+        return count
+    }
+
+    function clearAction() {
+        count = 0
+        console.log(count)
+        return count
+    }
+
+    return [counterAdd, counterAdd2, clearAction]
+
+}
+
+var coun = create()
+
+coun[0]()
+coun[1]()
+coun[1]()
+coun[2]()
+
+// 模块化 JQuery
+function createCount() {
+    var count = 0
+    var counter = {
+        counterAdd: function() {
+            count++
+            console.log(count)
+            return count
+        },
+        counterAdd2: function() {
+            count +=2
+            console.log(count)
+            return count
+        },
+        clearAction: function() {
+            count = 0
+            console.log(count)
+            return count
+        }
+    }
+    return counter
+}
+
+var cccc = createCount()
+cccc.counterAdd()
+```
+
+### 内置对象-Math
+
+```javascript
+ // 内置对象
+console.log(typeof Math)  // object
+
+// 常量
+console.log(Math.PI)  // 🥧
+console.log(Math.E) // lim极限的值
+console.log(Math.LN2)
+console.log(Math.LN10)
+console.log(Math.LOG2E)
+console.log(Math.LOG10E)
+console.log(Math.SQRT2) // 根号2
+console.log(Math.SQRT1_2)
+
+console.log("-----------")
+// 成员函数
+console.log(Math.abs(-10))  // 绝对值
+console.log(Math.sin(Math.PI/3)) // 三角函数 弧度-角度-306deg
+console.log(Math.cos(Math.PI/3))
+console.log(Math.tan(Math.PI/3))
+
+console.log(Math.asin(1)) // 反三角函数 弧度值
+console.log(Math.acos(1))
+console.log(Math.atan(1))
+console.log(Math.atan2(1, 1)) // (x, y)
+
+console.log(Math.round(12.5)) // 四舍五入
+console.log(Math.floor(1.12990901112))  // 取整
+console.log(Math.ceil(12.4))  // 向上取整
+console.log(Math.fround(13.4))  // 找到最接近的单精度
+console.log(Math.exp(2))  // 指数, e
+console.log(Math.log(25)) // 对数log, 以e为底
+console.log(Math.pow(10, 2))  // 任意数的指数
+console.log(Math.sqrt(4)) // 开根号
+
+console.log(Math.max(2, 10, 1213, 123123)) // 最大数
+console.log(Math.min(1, 0.22, 0.11111)) // 最小值
+
+console.log(Math.random())  // 产生随机值, 0 - 1 平均分布的小数
+console.log(Math.floor(Math.random() * 6) + 1)  // 产生离散的数, 平均分布的 6 
+```
+
+### 包装类-String
+
+```javascript
+// string是原始类型, String是对象
+// JS里面没有char型变量
+var str = "abcde"
+str[1] = "M"  // 为什么改不了
+for(var i=0; i<str.length; i++) {
+    console.log(str[i])
+}
+str.a = 15  // 包装类
+console.log(str.a)  // 复制完直接销毁
+
+// 字符串的常用方法
+var str = "01234"
+console.log(str.charAt(2))  // 返回指定位置字符串, index从0开始
+console.log(String.fromCharCode(107, 108, 109))  // ASCII值, 可以多个
+console.log(str.concat("hhhh")) // 拼接字符串, 可以多个
+console.log(str.indexOf("h")) 
+console.log("---------------")
+console.log(str)
+console.log(str.replace("2", "MMMM")) // 替换字符串中某一部分值
+console.log(str.slice(0, 2))  // 截取一部分, 原字符串不受影响
+console.log(str.split(""))  // 基于某个字符分割成数组
+
+console.log("---------------")
+var str = "abcdefg"
+// 都是截取字符串
+console.log(str.substring(1, 4))  // start end
+console.log(str.substr(1, 4)) // start length
+
+var str = "AbCd"
+console.log(str.toLowerCase())
+console.log(str.toUpperCase())
+console.log(str)
+
+console.log("---------------")
+var str = " abc "
+console.log(str.trimLeft())
+console.log(str.trim()) // 去除两边空格, 或等价的制表符
+console.log(str.trimRight())  
+```
+
+### JSON
+
+```javascript
+// 数据通信只能依靠字符串, 我们关心字符串的格式
+// 对象 -> 字符串(串行化)
+/***
+     *  1. JSON.stringify()
+     *  2. JQuery.toJSON()
+     * **/
+
+//  字符串 -> 对象
+/***
+     *  1. eval()
+     *  2. JSON.parse()
+     *  3. JQuery.parseJSON()
+     * **/
+```
 
