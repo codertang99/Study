@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="txt"></div>
+  <script>
+    // 定时器, setTimeout调用时只是把任务放置到队列中, 然后返回, 等到规定的时间到了, 会再调用
+    function fn() {
+      var d = new Date()
+      console.log(1, d)
+    }
+
+    setTimeout(fn, 5000);
+
+    var d2 = new Date()
+    console.log(2, d2)
+    
+    // 用setTimeout做一个时钟
+    var txt = document.getElementById("txt")
+    setInterval(function() {
+      var now = new Date()
+      txt.innerHTML = now.toLocaleTimeString()
+    }, 1000);
+  </script>
+</body>
+</html>

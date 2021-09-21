@@ -904,6 +904,75 @@ console.log(Math.random())  // 产生随机值, 0 - 1 平均分布的小数
 console.log(Math.floor(Math.random() * 6) + 1)  // 产生离散的数, 平均分布的 6 
 ```
 
+### 内置对象-Date
+
+```javascript
+//  Date 对象 日期和时间
+var d = new Date()
+console.log(d)
+
+// 巨大的正整数, 从1970年1月1号0点以来, 到现在的毫秒数
+console.log(d.getTime())
+
+var x = d.getTime()
+x /= 1000 * 3600 * 24 * 365
+console.log(x)
+
+// 3. setFullYear 设定年月(0~11)日
+var d = new Date()
+d.setFullYear(2021, 3, 1)
+console.log(d)
+
+// 4. Date() construct
+var d2 = new Date(2021, 3, 3)
+console.log(d2)
+
+// 5. GMT 格林尼治时间, UTC协调世界时间
+console.log(d.toUTCString())
+console.log(d.toGMTString())
+
+console.log("--------------")
+d.setFullYear(2000)
+console.log(d)
+console.log(d.getFullYear())
+
+// 6. 获得月
+console.log(d.getMonth() + 1)
+console.log(d.getDay()) // 星期几, 0代表星期日
+console.log(d.getDate())  // 天
+console.log(d.getTime()) // 获得毫秒数
+
+// 7. 克隆
+var currday = new Date(d)
+console.log(currday)
+
+// 12. 小时、分钟、秒
+console.log(d.getHours())
+console.log(d.getMinutes())
+console.log(d.getSeconds())
+
+// 13. 如何计算两个时间之前的差?
+var dStart = new Date(2019, 4, 1)
+var dEnd = new Date(2019, 4, 5)
+console.log(dStart, dEnd)
+console.log((dEnd - dStart) / (1000*3600*24))
+
+// 14. Date格式化
+//  日期格式化
+//  时间格式化
+console.log(d.toDateString())
+console.log(d.toLocaleDateString())
+
+// 时间的格式化
+console.log(d.toTimeString())
+console.log(d.toLocaleTimeString())
+
+var d3 = +new Date()   // 存在类型转换
+console.log(d3)
+```
+
+
+
 ### 包装类-String
 
 ```javascript
@@ -963,5 +1032,27 @@ console.log(str.trimRight())
      *  2. JSON.parse()
      *  3. JQuery.parseJSON()
      * **/
+```
+
+### 定时器 -> setTimeout和setInterval
+
+```javascript
+// 定时器, setTimeout调用时只是把任务放置到队列中, 然后返回, 等到规定的时间到了, 会再调用
+function fn() {
+    var d = new Date()
+    console.log(1, d)
+}
+
+setTimeout(fn, 5000);
+
+var d2 = new Date()
+console.log(2, d2)
+
+// 用setTimeout做一个时钟
+var txt = document.getElementById("txt")
+setInterval(function() {
+    var now = new Date()
+    txt.innerHTML = now.toLocaleTimeString()
+}, 1000);
 ```
 
