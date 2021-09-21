@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <input type="button" id="btn" value="按钮">
+  <script>
+    // 1. JS直接写再HTML中, 不可取
+    // 2. JS与HTML相分离
+    
+    // 3. 把JS和交互从HTML中剥离
+    window.onload = function() {
+      document.getElementById("btn").onclick = function () {
+        alert("hello")
+      }
+    }
+    // document.getElementById()
+    // document.getElementsByName() 根据name属性
+    // document.getElementsByTagName()  根据标签名
+  </script>
+</body>
+</html>
