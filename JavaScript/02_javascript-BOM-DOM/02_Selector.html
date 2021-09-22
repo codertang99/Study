@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .c1 {
+      font-weight: 500;
+      font-size: 50px;
+      color: antiquewhite;
+    }
+  </style>
+</head>
+<body>
+  <div>abc</div>
+  <div>def</div>
+  <div>qwe</div>
+  <p>123</p>
+  <p>456</p>
+  <p>789</p>
+  <hr>
+  <input type="text" id="txt"><input type="button" id="btn" value="无效" data-value="v">  
+  <script>
+    // 找到符合条件的第一个元素
+    var p = document.querySelector("body>p")
+    console.log(p)
+    var p2 = document.querySelectorAll("body>p")  // NodeList 的伪数组, 不可for in
+    console.log(p2)
+    for(var i=0;i<p2.length;i++) {
+      var element = p2[i]
+      // element.style.color = "#0f0"
+      // element.style.fontSize = "50px"
+      element.className = "c1"
+    }
+    
+    p2.forEach(function(item, index) {
+      console.log(item, index)
+    })
+
+    // 常用技巧
+    var btns = document.querySelector("#btn")
+    btns.onclick = function() {
+      var dataValue = this.dataset["value"]   // data-[] 添加用户数据, 通过dataset方式获取
+      var txt = document.querySelector("#txt")
+      if(dataValue === "v") {
+        txt.disabled = true
+        this.value = "有效"
+        this.dataset["value"] = "i"
+      } else {
+        txt.disabled = false
+        this.value = "无效"
+        this.dataset["value"] = "v"
+      }
+    }
+  </script>
+</body>
+</html>
