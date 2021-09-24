@@ -148,7 +148,7 @@ document.body.appendChild(input)
           e || window.event 兼容写法
           如何知道谁被点击了
           e.target ->(chrome)
-          e.srcElemt
+          e.srcElemt -> (IE8)
         阻止默认事件行为: 
           比如onContextmenu方法
            return false
@@ -229,5 +229,41 @@ ul.addEventListener("click", function(e) {
     e.innerHTML = "hello"
 })
 
+```
+
+### BOM(Brower object model)
+
+```javascript
+// BOM Brower Object Model 
+// 全局变量window, 在window中的一些对象和方法
+// window.alert("999999999999999999999999")
+// var a = window.prompt("请输入")
+// var a = window.confirm("确定吗?")
+// console.log(a)
+
+// window.onload事件
+window.addEventListener("load", function() {
+    console.log("1111Load")
+})
+window.addEventListener("DOMContentLoaded", function() {
+    console.log("1111DOMCOntentLoaded")
+})
+// src css 外部文件, 它们是异步的, 不会阻塞DOM的parse过程
+// 1. HTML文件下载完了, DOM parse完了
+// 2. 所有的css外部文件, img 下载完了
+// window.onload 是2完成后触发
+// DOMContentLoaded, 是1完成后触发
+
+console.log(window.location)
+// location.href = "http://www.baidu.com"
+// location.replace("http://www.baidu.com")
+// location.assign("http://www.baidu.com")
+
+console.log(window.history)
+// history.back()
+// history.forward()
+
+console.log(window.navigator)
+console.log(navigator.userAgent)  // 标明浏览器
 ```
 
