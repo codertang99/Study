@@ -267,3 +267,10 @@ console.log(window.navigator)
 console.log(navigator.userAgent)  // 标明浏览器
 ```
 
+### 动画
+
+运动的对象,  事件跨度, 步骤数
+
+offset --> width, height, left, right
+
+scroll --> 
