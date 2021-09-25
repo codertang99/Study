@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function Person(name, age) {  // 构造函数
+      this.name = name
+      this.age = age
+    }
+
+    // 方法
+    Person.prototype.say = function(saiWords) {
+      console.log(saiWords)
+    }
+
+    // 属性
+    Person.prototype.animalName = "人"
+
+    var p1 = new Person("tang", 19)
+    var p2 = new Person("tang", 19)
+
+    console.log(p1.animalName)
+    console.log(p2.animalName)
+
+    // 原型上的方法即可以访问原型上的属性和方法, 也可以访问实例上的属性
+    Person.prototype.say2 = function() {
+      this.say("!")
+      console.log(this.name)
+      console.log(this.animalName)
+    }
+    p1.say2()
+
+    p1.animalName = "好人"  // 可以在实例里添加自己的属性, 优先访问实例的, 找不到再找__proto__中的寻找, 找不到返回undefined
+    console.log(p1.animalName)
+    console.log(p2.animalName)
+    
+  </script>
+</body>
+</html>

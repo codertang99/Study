@@ -273,4 +273,96 @@ console.log(navigator.userAgent)  // 标明浏览器
 
 offset --> width, height, left, right
 
-scroll --> 
+scroll --> width, height, left, right
+
+### 构造函数
+
+```javascript
+// 工厂方法
+function createPerson(name, age) {
+    var person = {}
+    person.name = name
+    person.age = age
+    person.say = function() {
+        console.log("Hello")
+    }
+    return person
+}
+
+var person = createPerson("tang", 20)
+console.log(person)
+
+// 直接创建, 不推荐
+var person1 = {}
+person1.name = "tang"
+person1.age = 999
+person1.say = function() {
+    console.log("tang")
+}
+
+// 推荐写法
+var person1 = {
+    name: "tamg",
+    age: 11,
+    say: function() {
+        console.log("tang")
+    }
+}
+
+// 构造函数
+function Person(name, age) {
+    this.name = name
+    this.age = age
+    this.say = function() {
+        console.log("hhhhh")
+    }
+}
+var p = new Person("shen", 8)
+console.log(p)
+
+/*** 
+     *  工厂方法和构造函数
+     *  工厂首字母小写, 构造函数大写
+     *  构造函数new调用, 工厂函数调用
+     *  返回值工厂必须返回对象, 构造函数建议不返回
+     *  对象引用, 工厂创建就用谁, 构造函数this
+     * **/
+console.log(Person.prototype === p.__proto__) // true
+console.log(Person.prototype.constructor) // 函数本身
+console.log(p.__proto__.constructor === Person)
+
+var a = []
+console.log(a.__proto__.constructor.name)
+
+var obj = {}
+console.log(obj.__proto__.constructor.name)
+
+console.log("------------")
+console.log(p instanceof Person)
+console.log(a instanceof Array)
+console.log(obj instanceof Object)
+
+/***
+     *  一个构造函数创建的对象
+     *  对象.__proto__.constructor 就是构造函数的函数对象
+     *  对象 instanceof 构造函数对象 是true
+     * **/
+
+var pe1 = new Person("tang", 28)
+var pe2 = new Person("tang", 28) // 构造多个不同对象会大量占用内存空间
+console.log(pe1.say === pe2.say) // false
+
+console.log("----------------")
+// 原型: 用来让所有构造函数生成的对象可以共享属性和方法
+function Person(name, age) {
+    this.name = name
+    this.age = age
+}
+Person.prototype.say = function() {
+    console.log("hello")
+}
+var pe1 = new Person("tang", 28)
+var pe2 = new Person("tang", 28) 
+console.log(pe1.say === pe2.say)
+```
+
