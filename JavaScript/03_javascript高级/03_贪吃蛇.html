@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #map {
+      width: 800px;
+      height: 600px;
+      background-color: #ccc;
+      position: relative;
+    }
+
+    .food {
+      width: 20px;
+      height: 20px;
+      background-color: #00f;
+      position: absolute;
+    }
+
+    .snake {
+      width: 20px;
+      height: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="map">
+
+  </div>
+  <script>
+    // 分析贪吃蛇
+    // 对象分析: snake, food, map, game
+    (function() {
+      function Food(x, y, width, height, backgroundColor) {
+        this.x = x
+        this.y = y
+        this.width = width
+        this.height = height
+        this.backgroundColor = backgroundColor
+        this.divElement = null
+      }
+      Food.prototype.CLASSNAME = "food"
+      Food.prototype.DEFAULTWIDTH = 20
+      Food.prototype.DEFAULTHEIGHT = 20
+
+      // 清除上一个食物, 同时初始化一个新的食物
+      Food.prototype.init = function(map) {
+        // 初始化map, create div 配置样式
+        var element = document.createElement("div")
+        element.className = this.CLASSNAME
+        if(this.width) element.style.width = this.width + "px"
+        if(this.height) element.style.height = this.height + "px"
+        if(this.backgroundColor) element.style.backgroundColor = this.backgroundColor
+
+        var width = this.width || this.DEFAULTWIDTH
+        var height = this.height || this.DEFAULTHEIGHT
+        
+        if(this.x) {
+          this.x =  Math.floor(this.x / width) * width
+          if(x < 0) this.x = 0
+          else if(x > map.offsetWidth - width) this.x = map.offsetWidth - width
+        } else this.x = Math.floor(Math.random() * (map.offsetWidth/width)) * width
+        
+        if(this.y) {
+          this.y =  Math.floor(this.y / height) * height
+          if(y < 0) this.y = 0
+          else if(y > map.offsetHeight - height) this.y = map.offsetHeight - height
+        } else this.y = Math.floor(Math.random() * (map.offsetHeight/height)) * height
+
+        element.style.left = this.x + "px"
+        element.style.top = this.y + "px"
+
+        // 清除食物
+        remove.apply(this)
+
+        map.appendChild(element)
+      }
+
+      // 清除上一个食物
+      function remove() {
+        var element = this.divElement
+        if(element) {
+          element.parentNode.removeChild(element)
+        }
+      }
+      
+      // 不用return 挂载在window全局中
+      window.Food = Food
+    })()
+
+    new Food().init(document.querySelector("#map"))
+
+    (function() {
+      function Snake(headX, headY) {
+
+      }
+
+      window.Snake = Snake
+    })()
+    function Map() {
+
+    }
+    function Game() {
+
+    }
+  </script>
+</body>
+</html>

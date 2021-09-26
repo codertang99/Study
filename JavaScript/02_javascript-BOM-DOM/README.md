@@ -126,7 +126,7 @@ document.body.appendChild(input)
             解绑:
               removeEventListener(type, fn) (只能删除addEventListener加上去的事件, 删除时必须有函数)
               怎么可以知道某个事件上挂载了多少函数?(借助chrome浏览器工具查看)
-        3. attchEvent
+        3. attachEvent
             包含两个参数(type(包含on), fn)
             特点
               chrome上不支持
