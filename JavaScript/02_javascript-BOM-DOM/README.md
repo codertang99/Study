@@ -445,5 +445,48 @@ cat.eat(vole)
 cat.eat(new Animal())
 ```
 
+### 拷贝
+
+```javascript
+function Person(p) {
+    this.a = p
+}
+
+var p = new Person("tang")
+
+// var curr = new Object()
+// curr.__proto__ = p   // 把当前proto指向目标对象的
+// // var curr = Object.create(p)  // 更加优雅的写法
+// curr.a = "o"
+// console.log(curr.a)
+
+// 拷贝继承
+// var p1 = Object.create(p.__proto__)
+// for(var i in p) {
+//   if(p.hasOwnProperty(i))
+//     p1[i] = p[i]
+// }
+
+// 深拷贝
+// function deepCopy(a) {
+//   var curr = Object.create(a.__proto__)
+//   for(var i in a) {
+//     if(a.hasOwnProperty(i)) {
+//       if(!a[i] instanceof Object) {
+//         curr[i] = a[i]
+//       } else {
+//         curr[i] = deepCopy(a[i])
+//       }
+//     }
+//   }
+//   return curr
+// }
+
+// var pp = deepCopy(p)
+// 还有待解决
+```
+
+
+
 
 
