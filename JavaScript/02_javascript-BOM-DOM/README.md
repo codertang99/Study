@@ -366,3 +366,84 @@ var pe2 = new Person("tang", 28)
 console.log(pe1.say === pe2.say)
 ```
 
+### 面向对象
+
+- 继承的几种方式
+  - 原型链继承
+  - 构造函数
+  - 组合继承(原型链+构造函数)
+  - 拷贝继承
+
+```javascript
+// 原型链继承, 构造函数继承, 组合继承
+// 基类: animal: gender, weight, eat(), sleep()
+//        cat: eat(mouse)
+//        mouse:
+//          vole: eat('crop')
+//          rat: eat('garbage')
+
+function Animal(gender, weight) {
+    this.gender = gender
+    this.weight = weight
+}
+
+Animal.prototype.eat = function() {
+    console.log("animal is eating")
+}
+Animal.prototype.sleep = function() {
+    console.log("sleep: zzzzzzz")
+}
+
+function Cat(gender, weight) {
+    Animal.apply(this, [gender, weight])  // 调用父类构造函数传入当前this使其当前具有该属性, 便于拓展
+}
+
+Cat.prototype = new Animal("male", 25)
+Cat.prototype.constructor = Cat
+Cat.prototype.eat = function(mouse) {
+    // 如何判断进来的对象是一个mouse, 但是js是弱类型
+    // 第一种判断方式
+    if(mouse instanceof Mouse) {  // 通过instanceof判断传入变量是否是该mouse属性的对象
+        mouse.eat()
+    } else {
+        console.log("this not eat mouse")
+    }
+
+    // 实现接口方式, 通过判断mouse参数是否实现mouse对象的方式
+}
+
+function Mouse() {
+}
+
+Mouse.prototype = new Animal("female", 3)
+Mouse.prototype.constructor = Mouse
+
+function Vole() {
+}
+
+Vole.prototype = new Mouse()
+Vole.prototype.constructor = Vole
+Vole.prototype.eat = function() {
+    console.log("vole is eating crop")
+}
+
+function Rat() {
+}
+
+Rat.prototype = new Mouse()
+Rat.prototype.constructor = Rat
+Rat.prototype.eat = function() {
+    console.log("rat is eating garbage")
+}
+
+var cat = new Cat("hh", 1)
+var rat = new Rat()
+var vole = new Vole()
+
+cat.eat(rat)
+cat.eat(vole)
+cat.eat(new Animal())
+```
+
+
+
