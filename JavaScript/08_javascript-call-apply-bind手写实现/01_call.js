@@ -6,7 +6,7 @@ Function.prototype.mycall = function(thisArgs, ...args) {
   var currFn = this
 
   // 做三元判断,对thisArgs做包装防止普通类型报错问题, 如果传入的thisArgs有值则使用当前包装后的thisArgs, 没有则是window
-  thisArgs = thisArgs ? Object(thisArgs) : window
+  thisArgs = (thisArgs!==undefined || thisArgs!==null) ? Object(thisArgs) : window
 
   // 在当前thisArgs添加函数做隐式调用, 这样会在对象中多一个fn属性
   thisArgs.fn = currFn
@@ -19,7 +19,6 @@ Function.prototype.mycall = function(thisArgs, ...args) {
 
   // 做完所有操作后返回结果
   return result
-  
 }
 
 function foo() {
