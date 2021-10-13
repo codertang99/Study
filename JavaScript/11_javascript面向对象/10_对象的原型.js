@@ -10,4 +10,3 @@ console.log(obj.__proto__);
 
 // ES5之后提供了另一种访问方式
 console.log(Object.getPrototypeOf(obj));
-
