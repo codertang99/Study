@@ -217,13 +217,15 @@ var Student = /*#__PURE__*/ (function (_Person) {
   // 调用封装的继承函数
   _inherits(Student, _Person);
 
+  // 返回一个新的函数
   var _super = _createSuper(Student);
 
   function Student(name, age, sno) {
     var _this;
 
-    _classCallCheck(this, Student);
+    _classCallCheck(this, Student); 
 
+    // 对新函数直接做call调用
     _this = _super.call(this, name, age);
     _this.sno = sno;
     return _this;
