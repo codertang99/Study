@@ -1,4 +1,5 @@
 class Person {
+
   constructor(name, age) {
     this.name = name
     this.age = age
@@ -44,7 +45,6 @@ class Student extends Person {
 
     // 同理, 调用super关键字访问父类static方法, 便于复用
     super.staticMethod()
-    
     console.log("Student static method");
 
   }
