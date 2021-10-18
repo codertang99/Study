@@ -21,3 +21,11 @@ function foo(x, y ,z) {
 // 如果中间插入变量, 会分割字符串, 字符串当作数组, 传入的变量放入后面参数中
 foo`Hel${1}loWorld`
 // 应用场景, styled-components
+
+
+function bar(x, ...args) {
+  console.log(x, args);
+  console.log(arguments); // 这是一个类数组
+}
+
+bar(1, 2, 3, 4, 5)
