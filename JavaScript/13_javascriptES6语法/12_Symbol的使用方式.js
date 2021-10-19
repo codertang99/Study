@@ -63,3 +63,8 @@ console.log(aa === cc);
 const key = Symbol.keyFor(aa)
 console.log(key);
 console.log(Symbol.for(key) === cc);
+
+
+/**
+ * () => {} 箭头函数是没有prototype的 -> arguments, this, 这个是需要注意的
+ */
