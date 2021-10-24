@@ -4,7 +4,14 @@
  */
 const obj = {
   name: "tang",
-  age: 29
+  age: 29,
+  _address: "北京市",
+  set address(value) {
+    this._address = value
+  },
+  get address() {
+    return this._address
+  }
 }
 
 const proxy = new Proxy(obj, {
@@ -20,11 +27,14 @@ const proxy = new Proxy(obj, {
   },
   // 让Reflect来帮我们操作
   get: function(target, key, receiver) {
+    // receiver用法, 有时候我们为了让属性是私有的, 只提供了对应的get、set方法
+    // 一般没有receiver, 最终操作的还是私有属性, 为了让我们用代理操作, receiver相当于当前代理对象this一样
+    // console.log(key);
     return Reflect.get(target, key, receiver)
   }
 })
 
-console.log(proxy.name);
+console.log(proxy.address);
 
 function Person(name, age) {
   this.name = name
