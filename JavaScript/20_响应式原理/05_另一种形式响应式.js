@@ -90,26 +90,6 @@ function reactive(obj) {
   })
 
   return obj
-
-  // return new Proxy(obj, {
-  //   // 重写监听器
-  //   set: function(target, key, value, receiver) {
-  //     // 利用Reflect对源对象进行操作
-  //     Reflect.set(target, key, value, receiver)
-  //     // 传入对应对象和key, 返回对应代理对象
-  //     const dep = getDepend(target, key)
-  //     // 通知所有依赖执行
-  //     dep.notify()
-  //   },
-  //   get: function(target, key, receiver) {
-  //     // 获取到对应的依赖
-  //     const dep = getDepend(target, key)
-  //     // 执行对应的收集依赖函数
-  //     dep.depend()
-      
-  //     return Reflect.get(target, key, receiver)
-  //   }
-  // })
 }
 
 // 直接调用函数创建对象
