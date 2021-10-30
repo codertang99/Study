@@ -130,26 +130,105 @@ class MyPromise {
     })
   }
 
+  static resolve(value) {
+    return new MyPromise((resolve, reject) => {
+      resolve(value)
+    })
+  }
+
+  static reject(err) {
+    return new MyPromise((resolve, reject) => {
+      reject(err)
+    })
+  }
+
+  static all(promises) {
+    return new MyPromise((resolve, reject) => {
+      const values = []
+      promises.forEach(promise => {
+        promise.then(res => {
+          values.push(res)
+          if(promises.length === values.length) {
+            resolve(values)
+          }
+        }, err => {
+          reject(err)
+        })
+      })
+    })
+  }
+
+  static allsettled(promises) {
+    return new MyPromise((resolve, reject) => {
+      const values = []
+      promises.forEach(promise => {
+        promise.then((res) => {
+          values.push({
+            status: STATUS_FULFILLED,
+            value: res
+          })
+          if(values.length === promises.length) resolve(values)
+        }, err => {
+          values.push({
+            status: STATUS_REJECTED,
+            reason: err
+          })
+          if(values.length === promises.length) resolve(values)
+        })
+      })
+    })
+  }
+
+  static race(promises) {
+    return new Promise((resolve, reject) => {
+      promises.forEach(promise => {
+        promise.then((res) => {
+          resolve(res)
+        }, (err) => {
+          reject(err)
+        })
+      })
+    })
+  }
+
+  static any(promises) {
+    return new MyPromise((resolve, reject) => {
+      const reasons = []
+      promises.forEach(promise => {
+        promise.then(res => {
+          resolve(res)
+        }, err => {
+          reasons.push(err)
+          if(reasons.length === promises.length) {
+            reject(new Error(reasons))
+          }
+        }) 
+      })
+    })
+  }
+
 }
 
-const pro = new MyPromise((resolve, reject) => {
-  // console.log("hello");
-  // resolve("resolve")
-  // reject("reject")
-  // throw new Error(11)
-  resolve("1")
-  // reject("2")
+const p1 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    reject(111)
+  }, 1000);
 })
 
-pro.then((res) => {
-  console.log("res1", res);
-  return 22
-}).catch((err) => {
-  console.log("err1", err);
-  return 11
-}).then((res) => {
-  console.log("res3", res);
-  return 111
-}).finally((fin) => {
-  console.log("111", fin);
+const p2 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    reject(222)
+  }, 3000);
+})
+
+const p3 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    reject(333)
+  }, 2000);
+})
+
+MyPromise.any([p1, p2, p3]).then(res => {
+  console.log("all", res);
+}, err => {
+  console.log("err", err);
 })
