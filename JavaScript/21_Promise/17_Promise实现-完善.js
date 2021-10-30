@@ -65,6 +65,10 @@ class MyPromise {
     // 保存then的onfufilled函数和onrejected函数, 再调用resolve或reject的时候方便进行回调
     // this.onfufilled = onfufilled
     // this.onrejected = onrejected
+    // 处理rejected的回调, 如果传入空则直接抛出给下一个promise捕获
+    onrejected = onrejected || (err => {throw err})
+
+    onfulfilled = onfulfilled || (value => value)
 
     // 返回一个新promise用于链式调用
     return new MyPromise((resolve, reject) => {
@@ -92,7 +96,7 @@ class MyPromise {
       
       // 如果当前为pending状态则放入数组中, 等待回调执行
       if(this.status === STATUS_PENDING) {
-        this.onfulfilledFns.push(() => {
+        if(onfulfilled) this.onfulfilledFns.push(() => {
           try {
             const value = onfulfilled(this.value)
             resolve(value)
@@ -100,7 +104,7 @@ class MyPromise {
             reject(err)
           }
         })
-        this.onrejetedFns.push(() => {
+        if(onrejected) this.onrejetedFns.push(() => {
           try {
             const reason = onrejected(this.reason)
             resolve(reason)
@@ -114,6 +118,18 @@ class MyPromise {
     
   }
 
+  catch(oncatch) {
+    return this.then(undefined, oncatch)
+  }
+
+  finally(onfinally) {
+    this.then(() => {
+      onfinally()
+    }, () => {
+      onfinally()
+    })
+  }
+
 }
 
 const pro = new MyPromise((resolve, reject) => {
@@ -122,37 +138,17 @@ const pro = new MyPromise((resolve, reject) => {
   // reject("reject")
   // throw new Error(11)
   resolve("1")
-  reject("2")
+  // reject("2")
 })
 
 pro.then((res) => {
   console.log("res1", res);
-  return 111
-}, (err) => {
+}).catch((err) => {
   console.log("err1", err);
-  return 999
-}).then(res => {
-  console.log("hhh", res);
+  return 11
+}).then((res) => {
+  console.log("res3", res);
   return 111
-}).then(res => {
-  console.log("object", res);
+}).finally((fin) => {
+  console.log("111", fin);
 })
-
-// pro.then((res) => {
-//   console.log("res2", res);
-// }, (err) => {
-//   console.log("err2", err);
-// })
-
-// setTimeout(() => {
-//   pro.then(res => {
-//     console.log("res3", res);
-//   }, err => {
-//     console.log("err3", err);
-//   })
-//   pro.then(res => {
-//     console.log("res4", res);
-//   }, err => {
-//     console.log("err4", err);
-//   })
-// }, 1000);
