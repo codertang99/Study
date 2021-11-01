@@ -28,6 +28,11 @@ Classroom.prototype[Symbol.iterator]  = function() {
   }
 }
 
+Classroom.prototype[Symbol.iterator] = function* () {
+  // 直接利用yield* 简写后面跟上一个可迭代对象
+  yield* this.students
+}
+
 var c = new Classroom("5栋506", "实训室", [123, 234, 345, 56])
 
 // 上面类实现的可迭代对象函数, 所以可以进行遍历
