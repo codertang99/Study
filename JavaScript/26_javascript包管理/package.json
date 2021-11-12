@@ -1,0 +1,25 @@
+{
+  "name": "javascript_package",
+  "version": "1.0.0",
+  "description": "this is a package description",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "runs": "node ./script/index.js"
+  },
+  // private -> 私有, 防止push至npm registry, 一般在公司会有这样限制
+  "private": "true",
+  "author": "tang",
+  "license": "ISC",
+  // 运行时依赖, 编写代码直接引用的需要用到的
+  "dependencies": {
+    "axios": "^0.24.0"
+  },
+  // 开发时依赖, 不在包含代码中所使用
+  "devDependencies": {
+    "webpack": "^5.64.0",
+    "webpack-cli": "^4.9.1"
+  },
+  "engines": {},
+  "peerDependencies": {}
+}
