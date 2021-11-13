@@ -1,0 +1,10 @@
+{
+  "name": "tang",
+  "age": 19,
+  "height": 1.99,
+  "friends": {
+    "name": "lucy",
+    "age": 20,
+    "height": 1.66
+  }
+}
