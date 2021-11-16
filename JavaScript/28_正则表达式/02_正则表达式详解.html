@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 简单类, 单词
+    var str1 = "hello world!"
+    console.log(str1.match(/hello/g))
+
+    // 范围类, [], 方括号中的任意一个字符如果匹配上都是可以的
+    /**
+     * 匹配十进制数? [0123456789]+ or [0-9]+ \d+
+     * 二进制数? [01]+
+     * 十六进制数? [0-9a-fA-F]+
+     * **/
+    var str2 = "12312312312423525"
+    console.log(str2.match(/[0-9]+/g))
+    var str3 = "10011001010"
+    console.log(str3.match(/[01]+/g))
+    var str4 = "123123abef"
+    console.log(str4.match(/[0-9a-fA-F]+/g))
+
+    // 负向类, 排除[^], 方括号中的任意字符都不能出现
+    var str5 = "sdlkajfakls12312aklsfjlakdsf"
+    console.log(str5.match(/[^\d]+/g))
+
+
+    // 通配符 预定义类
+    /**
+     * \d = [0-9] 数字
+     * \D = [^0-9] 非数字
+     * \w = [a-zA-Z_0-9] 数字字母下划线, 用来形成变量名
+     *      标识符, 变量名: 由数字字母下划线组成, 但是不能以数字开头 -> /[a-zA-Z_]\w/
+     * \W = [^z-zA-Z_0-9] 其它
+     * \s = [\t\n\r\f\v ] 所有的空格或者空白
+     * \S = [^\t\n\r\f\v ] 非空格或者非空白
+     * . = [^\n\r] 除了回车以外的所有字符
+     * 
+     * 位置, 不含字符
+     * \b 表示边界(两个字符中间的位置) 一边是\w, 一边是\W
+     * \B 不是边界, 两边都是\w, 或者两边都是\W
+     * ^  开始
+     * $ 结尾
+     * 
+     * */
+
+    //  量词 任何一个单位允许出现的次数
+    /**
+      {n} 出现n次
+      {m, n} 最少出现m次, 最多出现n次
+      {m,} 最少出现m次, 最多无限制
+      ? -> {0, 1}
+      + -> {1,}
+      * -> {0,}
+    **/
+    /**
+      贪婪量词: ? + * 独立使用, 找到最大匹配
+      惰性量词: *? +? 找到即停止
+    **/
+
+    // 分组, 一个正则表达式
+  </script>
+</body>
+</html>

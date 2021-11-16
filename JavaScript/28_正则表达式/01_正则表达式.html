@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 正则表达式
+    /**
+     *  表达式
+     *    [0-9]表示去匹配对应数字的每一个
+     *    + 表示进入贪婪状态, 会去匹配最大限度
+     *  参数
+     *    g 表示全局状态, 可以使用多次
+     **/
+
+    // 1. 使用RegExp类方式
+    var regExp = new RegExp("[0-9]+", "g")
+    var str = "12312333912023333391023"
+    // 匹配返回一个数组, 匹配符合对应的值
+    console.log(str.match(regExp))
+
+    // 2. 使用直接量, 直接表达式方式
+    var regExp2 = /(123)+/g
+    // 判断test中值是否符合regExp2的规则
+    console.log(regExp2.test(str))
+    console.log(str.match(regExp2))
+  </script>
+</body>
+</html>
