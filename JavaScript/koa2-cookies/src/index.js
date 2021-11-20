@@ -8,7 +8,8 @@ const router = new Router()
 router.get("/test", (ctx, err) => {
   ctx.set("Access-Control-Allow-Origin", "*")
   ctx.cookies.set("tang", "hello tang", {
-    maxAge: 1000 * 60
+    maxAge: 1000 * 60,
+    httpOnly: false
   })
   ctx.response.body = "123123"
 })
