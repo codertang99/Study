@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <input type="text" class="input">
+  <button>取消</button>
+
+  <script src="https://cdn.jsdelivr.net/npm/underscore@1.13.1/underscore-umd-min.js"></script>
+  <script src="./06_防抖函数-v6-返回值(promise).js"></script>
+  <script>
+    /***
+     * 防抖和节流是js当中的对一系列场景的一些优化方案
+     * 防抖: 对于某些事件绑定触发的函数, 为了防止频繁触发对应事件, 做防抖处理,
+     * 在规定事件内用户行为一直执行该事件, 不做响应, 停止即做出响应 例: input 提示输入框频繁输入触发事件 
+     * 节流: 对于某些绑定事件触发的函数, 做固定频率的触发, 做节流处理, 在某些事件发生, 只按一次次序触发
+     * **/
+    const inputEl = document.querySelector(".input")
+    const buttonEl = document.querySelector("button")
+    let counter = 0
+    const inputChange = function(e) {
+      console.log(this, e)
+      console.log(`执行了${++counter}次`)
+      return "hello tang"
+    }
+    // 下面两个是undescore库, 给我们提供的防抖和节流函数
+    // const debounceChange = _.debounce(inputChange, 1000)
+    // const throttleChange = _.throttle(inputChange, 1000)
+    const temp = debounce(inputChange, 1000, true)
+    const fn = () => {
+      temp().then(res => {console.log(res)})
+    }
+
+    const debounceChange = fn
+    const cancelHandle = function() {
+      debounceChange.cancel()
+    }
+
+    inputEl.addEventListener("input", debounceChange)
+    buttonEl.addEventListener("click", cancelHandle)
+  </script>
+</body>
+</html>
