@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <input type="text">
+  <button>取消</button>
+
+  <script src="./07_节流函数-v1-基础.js"></script>
+  <script>
+    const inputEl = document.querySelector("input")
+    const buttonEl = document.querySelector("button")
+    let counter = 0
+
+    const inputEvent = function(event) {
+      console.log(`第${++counter}执行`)
+      console.log(this, event)
+    }
+    const inputChange = throttle(inputEvent, 1000)
+
+    inputEl.addEventListener("input", inputChange)
+
+  </script>
+</body>
+</html>
