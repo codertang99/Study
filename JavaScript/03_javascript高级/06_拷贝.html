@@ -8,6 +8,8 @@
 </head>
 <body>
   <script>
+    var a = {name: "t", age: 10, friends: {name: "lucy", age: 19, hhh: {name: "lily"}}}
+    a.__proto__.ni = '123213'
     function Person(p) {
       this.a = p
     }
@@ -28,25 +30,23 @@
     // }
 
     // 深拷贝
-    // function deepCopy(a) {
-    //   var curr = Object.create(a.__proto__)
-    //   for(var i in a) {
-    //     if(a.hasOwnProperty(i)) {
-    //       if(!a[i] instanceof Object) {
-    //         curr[i] = a[i]
-    //       } else {
-    //         curr[i] = deepCopy(a[i])
-    //       }
-    //     }
-    //   }
-    //   return curr
-    // }
+    function deepCopy(a) {
+      var curr = Object.create(a.__proto__)
+      for(var i in a) {
+        // 判断对象是否包含特定的自身（非继承）属性
+        if(a.hasOwnProperty(i)) {
+          if(!(a[i] instanceof Object)) {
+            curr[i] = a[i]
+          } else {
+            curr[i] = deepCopy(a[i])
+          }
+        }
+      }
+      return curr
+    }
 
-    // var pp = deepCopy(p)
-    // console.log(pp)
-    // 还有待解决
+    var pp = deepCopy(a)
 
-    var a = {name: "t", age: 10}
   </script>
 </body>
 </html>

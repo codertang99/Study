@@ -5,6 +5,7 @@ function debounce(fn, interval, immediate = false) {  // callback返回值只是
 
   function _debounce(...args) {
     
+    // 利用Promise方式作为返回值回调
     return new Promise((resolve, reject) => {
       // 做上一次的清除
       if(timer) clearTimeout(timer)

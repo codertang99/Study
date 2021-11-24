@@ -1,4 +1,4 @@
-// 这里打印所有promise原型上的对象方法几描述符
+// 这里打印所有promise原型上的对象方法描述符
 // 所有promise的对象方法, 都是方法其原型对象上的
 // console.log(Object.getOwnPropertyDescriptors(Promise.prototype));
 

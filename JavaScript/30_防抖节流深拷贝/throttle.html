@@ -11,7 +11,8 @@
   <input type="text">
   <button>取消</button>
 
-  <script src="./07_节流函数-v1-基础.js"></script>
+  <!-- <script src="./07_节流函数-v1-基础.js"></script> -->
+  <script src="./08_节流函数-v2-leading.js"></script>
   <script>
     const inputEl = document.querySelector("input")
     const buttonEl = document.querySelector("button")
@@ -21,7 +22,7 @@
       console.log(`第${++counter}执行`)
       console.log(this, event)
     }
-    const inputChange = throttle(inputEvent, 1000)
+    const inputChange = throttle(inputEvent, 1000, false)
 
     inputEl.addEventListener("input", inputChange)
 
