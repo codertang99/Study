@@ -12,7 +12,9 @@
   <button>取消</button>
 
   <!-- <script src="./07_节流函数-v1-基础.js"></script> -->
-  <script src="./08_节流函数-v2-leading.js"></script>
+  <!-- <script src="./08_节流函数-v2-leading.js"></script> -->
+  <!-- <script src="./09_节流函数-v3-trailing.js"></script> -->
+  <script src="./10_节流函数-v4-返回值(callback).js"></script>
   <script>
     const inputEl = document.querySelector("input")
     const buttonEl = document.querySelector("button")
@@ -21,8 +23,11 @@
     const inputEvent = function(event) {
       console.log(`第${++counter}执行`)
       console.log(this, event)
+      return "cccc"
     }
-    const inputChange = throttle(inputEvent, 1000, false)
+    const inputChange = throttle(inputEvent, 3000, true, true, function(result) {
+      console.log(result)
+    })
 
     inputEl.addEventListener("input", inputChange)
 

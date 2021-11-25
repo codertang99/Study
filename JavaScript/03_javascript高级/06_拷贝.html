@@ -8,7 +8,16 @@
 </head>
 <body>
   <script>
-    var a = {name: "t", age: 10, friends: {name: "lucy", age: 19, hhh: {name: "lily"}}}
+    var a = {
+      name: "t", 
+      age: 10, 
+      friends: {
+        name: "lucy", 
+        age: 19, 
+        hhh: {name: "lily"}
+      },
+      ws: a
+    }
     a.__proto__.ni = '123213'
     function Person(p) {
       this.a = p
@@ -46,6 +55,7 @@
     }
 
     var pp = deepCopy(a)
+    console.log(pp)
 
   </script>
 </body>
