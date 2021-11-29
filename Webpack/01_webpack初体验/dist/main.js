@@ -1,0 +1,1 @@
+(()=>{var t={821:t=>{t.exports={formatDate:function(t){return"2021-11-29"},formatStr:function(t){return"this is line new script"}}}},r={};function o(e){var n=r[e];if(void 0!==n)return n.exports;var s=r[e]={exports:{}};return t[e](s,s.exports,o),s.exports}(()=>{"use strict";const{formatDate:t,formatStr:r}=o(821);console.log(50,1600),console.log(r()),console.log(t())})()})();
