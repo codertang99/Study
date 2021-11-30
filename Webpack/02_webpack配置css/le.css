@@ -1,0 +1,7 @@
+/* npx lessc ./src/css/component.less > le.css */
+/* 通过上面的lessc进行转换 */
+.content {
+  font-size: 40px;
+  font-weight: bold;
+  color: red;
+}
