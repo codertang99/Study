@@ -7,14 +7,11 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin")
  * @type {import("webpack").Configuration}
  */
 const config = {
-  mode: "development",
   entry: "./src/index.js",
   output: {
     path: path.resolve(__dirname, "./build"),
-    filename: "build.js",
-    clean: true
+    filename: "build.js"
   },
-  devtool: "inline-source-map",
   module: {
     rules: [
       {
@@ -37,13 +34,13 @@ const config = {
       //   ]
       // },
       {
-        test: /\.(png|svg|jpe?g|gif)/,
+        test: /\.(png|svg|jpeg|gif)$/i,
         use: [
           {
             loader: "url-loader",
             options: {
-               outputPath: "img",
-               name: "[name].[hash].[ext]"
+              outputPath: "img",
+              name: "[name].[hash].[ext]"
             }
           }
         ]
