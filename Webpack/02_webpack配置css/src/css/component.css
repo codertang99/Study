@@ -1,5 +1,14 @@
+@import "./base.css";
 .content {
   width: 400px;
   height: 400px;
   background-color: antiquewhite;
+}
+
+:fullscreen {
+
+}
+
+.ls {
+  list-style: none;
 }
