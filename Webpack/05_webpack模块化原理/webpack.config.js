@@ -7,7 +7,8 @@ const HtmlWebpackPlugin = require("html-webpack-plugin")
  */
 const config = {
   mode: "development",
-  entry: "./src/index.js",
+  devtool: "source-map",
+  entry: "./src/cjs_module.js",
   output: {
     path: path.resolve(__dirname, "./build"),
     filename: "js/build.js",
