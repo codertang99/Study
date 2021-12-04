@@ -7,6 +7,8 @@ const HtmlWebpackPlugin = require("html-webpack-plugin")
  */
 const config = {
   mode: "development",
+  // 设置source-map, 生成对应映射文件, 方便错误查找
+  // 这里有很多种值可以设置, 对应查找具体文档
   devtool: "source-map",
   entry: "./src/cjs_module.js",
   output: {
