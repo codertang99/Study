@@ -17,7 +17,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?$/i,
+        test: /\.j?t?sx?$/i,
         // 排除node_modules
         exclude: /node_modules/,
         use: [
@@ -35,10 +35,13 @@ module.exports = {
           }
         ]
       },
-      {
-        test: /\.ts$/i,
-        loader: "ts-loader"
-      }
+
+      // 使用ts-loader会对我们的类型进行检测, 但无法对不支持的语法进行polyfill
+      // 使用babel-loader, 无法检测类型, 支持polyfill
+      // {
+      //   test: /\.ts$/i,
+      //   loader: "ts-loader"
+      // }
     ]
   },
   plugins: [

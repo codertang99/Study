@@ -6,4 +6,6 @@ const foo = (str: string): string => {
 
 console.log(foo(message))
 
+const pr = new Promise((resolve, reject) => {})
+
 export {}

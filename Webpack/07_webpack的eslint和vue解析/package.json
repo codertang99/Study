@@ -4,9 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "npm run check && webpack --config webpack.config.js",
-    "check": "tsc --noEmit",  // 对语法进行检测的脚本
-    "check-watch": "tsc --noEmit --watch"
+    "build": "webpack --config webpack.config.js"
   },
   "author": "",
   "license": "ISC",
@@ -19,9 +17,18 @@
     "@babel/preset-env": "^7.16.4",
     "@babel/preset-react": "^7.16.0",
     "@babel/preset-typescript": "^7.16.0",
+    "@typescript-eslint/eslint-plugin": "^5.6.0",
+    "@typescript-eslint/parser": "^5.6.0",
     "babel-loader": "^8.2.3",
+    "eslint": "^8.4.1",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-react": "^7.27.1",
+    "eslint-plugin-vue": "^8.2.0",
     "html-webpack-plugin": "^5.5.0",
     "ts-loader": "^9.2.6",
+    "vue": "^3.2.24",
+    "vue-loader": "^16.8.3",
     "webpack": "^5.64.4",
     "webpack-cli": "^4.9.1"
   },
