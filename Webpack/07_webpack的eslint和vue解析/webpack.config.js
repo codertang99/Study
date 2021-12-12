@@ -1,7 +1,7 @@
 const path = require("path");
 
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const { VueLoaderPlugin } = require("vue-loader")
+const { VueLoaderPlugin } = require("vue-loader");
 
 /**
  * @type {import("webpack").Configuration}
@@ -10,10 +10,7 @@ module.exports = {
   mode: "development",
   entry: "./src/index.js",
   output: {
-    path: path.resolve(
-      __dirname,
-      "./build"
-    ),
+    path: path.resolve(__dirname, "./build"),
     filename: "js/build.js",
     clean: true,
   },
@@ -26,14 +23,15 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           {
-            loader: "babel-loader"
+            loader: "babel-loader",
           },
         ],
       },
       {
         test: /\.vue$/i,
         loader: "vue-loader",
-      }    ],
+      },
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
