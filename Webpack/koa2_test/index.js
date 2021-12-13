@@ -9,7 +9,7 @@ router.get("/test", (ctx, err) => {
 })
 
 app.use(router.routes())
-// app.use(router.allowedMethods())
+app.use(router.allowedMethods())
 
 app.listen(3000, () => {
   console.log("服务器启动成功");
