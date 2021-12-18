@@ -1,0 +1,1 @@
+{"version":3,"file":"chunk/elementName-chunk.js","mappings":";;;;;;;;;;;;;AAAA;AACA;AACA;AACA;AACA,iEAAe,OAAO","sources":["webpack://11_webpack_code_seperate/./src/element.js"],"sourcesContent":["const element = document.createElement(\"div\")\r\n\r\nelement.innerHTML = \"hello element\"\r\n\r\nexport default element\r\n"],"names":[],"sourceRoot":""}

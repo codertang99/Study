@@ -1,34 +1,6 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
-/******/ 	var __webpack_modules__ = ({
-
-/***/ "./src/with.js":
-/*!*********************!*\
-  !*** ./src/with.js ***!
-  \*********************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
-
-
-/**
- * 利用import函数异步导入的方式
- * webpack默认都会进行代码分离
- * 可以利用
- */
-__webpack_require__.e(/*! import() | foo */ "foo").then(__webpack_require__.t.bind(__webpack_require__, /*! ./foo */ "./src/foo.js", 23)).then(res => {
-  console.log(res);
-})
-
-console.log(lodash__WEBPACK_IMPORTED_MODULE_0___default().join(["!555", "555"], "12323"));
-
-console.log("with")
-
-/***/ })
-
-/******/ 	});
+/******/ 	var __webpack_modules__ = ({});
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
@@ -91,6 +63,16 @@ console.log("with")
 /******/ 			}
 /******/ 			return result;
 /******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/chunk prefetch function */
+/******/ 	(() => {
+/******/ 		__webpack_require__.F = {};
+/******/ 		__webpack_require__.E = (chunkId) => {
+/******/ 			Object.keys(__webpack_require__.F).map((key) => {
+/******/ 				__webpack_require__.F[key](chunkId);
+/******/ 			});
+/******/ 		}
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/compat get default export */
@@ -280,7 +262,7 @@ console.log("with")
 /******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
-/******/ 			"with": 0
+/******/ 			"hello": 0
 /******/ 		};
 /******/ 		
 /******/ 		__webpack_require__.f.j = (chunkId, promises) => {
@@ -292,7 +274,7 @@ console.log("with")
 /******/ 					if(installedChunkData) {
 /******/ 						promises.push(installedChunkData[2]);
 /******/ 					} else {
-/******/ 						if(true) { // all chunks have JS
+/******/ 						if("hello" != chunkId) {
 /******/ 							// setup Promise in chunk cache
 /******/ 							var promise = new Promise((resolve, reject) => (installedChunkData = installedChunks[chunkId] = [resolve, reject]));
 /******/ 							promises.push(installedChunkData[2] = promise);
@@ -322,7 +304,20 @@ console.log("with")
 /******/ 				}
 /******/ 		};
 /******/ 		
-/******/ 		// no prefetching
+/******/ 		__webpack_require__.F.j = (chunkId) => {
+/******/ 			if((!__webpack_require__.o(installedChunks, chunkId) || installedChunks[chunkId] === undefined) && "hello" != chunkId) {
+/******/ 				installedChunks[chunkId] = null;
+/******/ 				var link = document.createElement('link');
+/******/ 		
+/******/ 				if (__webpack_require__.nc) {
+/******/ 					link.setAttribute("nonce", __webpack_require__.nc);
+/******/ 				}
+/******/ 				link.rel = "prefetch";
+/******/ 				link.as = "script";
+/******/ 				link.href = __webpack_require__.p + __webpack_require__.u(chunkId);
+/******/ 				document.head.appendChild(link);
+/******/ 			}
+/******/ 		};
 /******/ 		
 /******/ 		// no preloaded
 /******/ 		
@@ -364,12 +359,7 @@ console.log("with")
 /******/ 	
 /************************************************************************/
 /******/ 	
-/******/ 	// startup
-/******/ 	// Load entry module and return exports
-/******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["vendors-node_modules_lodash_lodash_js"], () => (__webpack_require__("./src/with.js")))
-/******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=with-build.js.map
+//# sourceMappingURL=hello-build.js.map

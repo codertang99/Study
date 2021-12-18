@@ -39,11 +39,13 @@ const config = {
       // 模块导入次数
       minChunks: 1,
       // 手动配置
-      cacheGroups: {
-
-      }
+      cacheGroups: {}
     },
     // chunkIds: "deterministic"
+    // 所有通过import导入的模块都单独进行打包
+    runtimeChunk: {
+      name: "hello"
+    }
   }
 }
 
