@@ -2,6 +2,8 @@ const path = require("path")
 
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const { ProvidePlugin } = require("webpack")
+// 使用mini-css-extract-plugin, 对css文件进行抽取
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
 /**
  * @type {import("webpack").Configuration}
@@ -17,6 +19,17 @@ const config = {
     // 可以通过publicpath来配置对资源的cdn
     // publicPath: "https://codertang/cdn/"
   },
+  module: {
+    rules: [
+      {
+        test: /\.css$/i,
+        use: [
+          MiniCssExtractPlugin.loader,
+          "css-loader"
+        ]
+      }
+    ]
+  },
   plugins: [
     new HtmlWebpackPlugin({
       title: "CDN_shiming_DDL",
@@ -26,6 +39,9 @@ const config = {
     new ProvidePlugin({
       axios: "axios",
       dayjs: "dayjs"
+    }),
+    new MiniCssExtractPlugin({
+      filename: "css/[name].[contenthash:6].css"
     })
   ],
   // 对代码中使用的第三方模块做排除, 使用cdn引入
