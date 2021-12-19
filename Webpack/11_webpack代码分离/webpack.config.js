@@ -44,6 +44,7 @@ const config = {
     // chunkIds: "deterministic"
     // 所有通过import导入的模块都单独进行打包
     runtimeChunk: {
+      // object 自定义文件name
       name: "hello"
     }
   }
