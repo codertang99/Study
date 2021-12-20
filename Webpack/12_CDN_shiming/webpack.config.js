@@ -1,9 +1,12 @@
 const path = require("path")
-
-const HtmlWebpackPlugin = require("html-webpack-plugin")
 const { ProvidePlugin } = require("webpack")
+
 // 使用mini-css-extract-plugin, 对css文件进行抽取
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const HtmlWebpackPlugin = require("html-webpack-plugin")
+// 对css代码进行压缩
+const CssMinimizerWebpackPlugin = require("css-minimizer-webpack-plugin")
+
 
 /**
  * @type {import("webpack").Configuration}
@@ -42,7 +45,8 @@ const config = {
     }),
     new MiniCssExtractPlugin({
       filename: "css/[name].[contenthash:6].css"
-    })
+    }),
+    new CssMinimizerWebpackPlugin()
   ],
   // 对代码中使用的第三方模块做排除, 使用cdn引入
   // externals: {

@@ -1,8 +1,9 @@
 const path = require("path")
 const { DllReferencePlugin } = require("webpack")
+const TerserWebpackPlugin = require("terser-webpack-plugin")
+
 const AddAssetHtmlWebpackPlugin = require("add-asset-html-webpack-plugin")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
-const TerserWebpackPlugin = require("terser-webpack-plugin")
 
 /**
  * @type {import("webpack").Configuration}
@@ -38,8 +39,14 @@ const config = {
   ],
   optimization: {
     minimizer: [
+      // 使用terserplugin, 对代码进行压缩和丑化, 里面可自定义配置
       new TerserWebpackPlugin({
-        extractComments: false
+        extractComments: false,
+        terserOptions: {
+          compress: {
+            toplevel: true
+          }
+        }
       })
     ],
     splitChunks: {
