@@ -1,5 +1,7 @@
 const path = require("path")
 
+const { optimize } = require("webpack")
+
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const CssMinimizerWebpackPlugin = require("css-minimizer-webpack-plugin")
@@ -48,7 +50,9 @@ const config = {
       //     standard: ["body"]
       //   }
       // }
-    })
+    }),
+    // 作用域提升插件(内置)
+    new optimize.ModuleConcatenationPlugin()
   ],
   optimization: {
     // usedExports, 是否开启对模块的tree shaking, 会在指定模块添加标记(魔法注释), 

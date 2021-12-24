@@ -96,6 +96,10 @@ console.log((0,_math__WEBPACK_IMPORTED_MODULE_1__.add)(10, 20));
 const h2El = document.createElement("h2")
 h2El.innerHTML = "hello"
 document.body.appendChild(h2El)
+
+const divEl = document.createElement("div")
+divEl.className = "content"
+document.body.appendChild(divEl)
 })();
 
 /******/ })()
