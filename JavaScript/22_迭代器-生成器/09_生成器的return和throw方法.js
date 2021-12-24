@@ -8,7 +8,7 @@ function *foo() {
     console.log(err);
   }
 
-  // 相当于在这里家了一个return 即中断执行
+  // 相当于在这里加了一个return 即中断执行
 
   console.log("value1", value1);
 

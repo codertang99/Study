@@ -38,6 +38,7 @@ const config = {
     })
   ],
   optimization: {
+    minimize: true,
     minimizer: [
       // 使用terserplugin, 对代码进行压缩和丑化, 里面可自定义配置
       new TerserWebpackPlugin({

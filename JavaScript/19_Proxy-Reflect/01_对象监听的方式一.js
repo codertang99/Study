@@ -3,7 +3,6 @@ var obj = {
   age: 29
 }
 
-
 // 单个对象属性的监听
 // Object.defineProperty(obj, "name", {
 //   configurable: true,
