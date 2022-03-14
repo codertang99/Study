@@ -5,7 +5,7 @@ function isObject(value) {
 }
 
 
-function deepCopy(raw, weak = new WeakMap) {
+function deepCopy(raw, weak = new WeakMap()) {
 
   // 判断值的Map类型
   if(raw instanceof Map) {

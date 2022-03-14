@@ -25,7 +25,6 @@ function EatMixin(MixinClass) {
   return NewClass
 }
 
-
 /**
  * Student类需要mixin其它的方法
  */
