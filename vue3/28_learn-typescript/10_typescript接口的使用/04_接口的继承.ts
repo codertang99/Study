@@ -1,10 +1,11 @@
 interface IPerson {
-  name: string,
+  name: string
   runnig: () => void
 }
 
 interface IAction {
   action: () => void
+  c(str: string): void
 }
 
 interface IStudent extends IPerson, IAction {

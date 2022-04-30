@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      color: #cccccc;
+    }
+    div {
+      color: #ffffff;
+    }
+    #id {
+      color: #ff0000;
+    }
+    .p {
+      color: #00ff00;
+    }
+    [title=p] {
+      font-weight: bold;
+    }
+
+    p, div {
+      font-size: 19px;
+    }
+
+    p+p {
+      color: #00ff00;
+    }
+    p~p {
+      color: antiquewhite;
+    }
+    div#id {
+      font-weight: 400;
+    }
+  </style>
+</head>
+<body>
+  <div id="id">我是div元素</div>
+  <p class="p" title="p">我是p元素</p>
+</body>
+</html>

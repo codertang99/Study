@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./css/reset.css">
+  <style>
+    .line {
+      text-decoration: underline;
+    }
+    .google {
+      text-decoration: line-through;
+    }
+    .bing {
+      text-decoration: overline;
+    }
+    .transform .info {
+      text-transform: capitalize;
+      text-transform: lowercase;
+      text-transform: uppercase;
+      text-transform: none;
+    }
+    .indent p {
+      text-indent: 2em;
+    }
+
+    .align p {
+
+      /* 不仅仅是文本的居中
+        它是根据定义行的内容(行内级元素)来决定的, 相较于父元素居中
+      */
+      text-align: center;
+      /* 最后一行一般不生效, 需要单独设置 */
+      text-align-last: justify;
+    }
+
+    .spacing {
+      letter-spacing: 10px;
+      word-spacing: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="text">
+    <!-- a元素浏览器默认text-decoration: underline -->
+    <a href="http://www.baidu.com">百度一下</a>
+
+    <span class="line">百度一下</span>
+
+    <span class="google">Google一下</span>
+
+    <span class="bing">必应一下</span>
+  </div>
+
+  <div class="transform">
+    <div class="info">my name is tang</div>
+  </div>
+
+  <div class="indent">
+    <p>
+      4月13日至15日，傣族等少数民族迎来了重要的传统节日泼水节。受疫情影响，云南西双版纳今年在线上举办了2022年“云过泼水节”活动。各地游客通过网络直播，观看象脚鼓舞、章哈展演等傣族特色民俗，参与“云上”赶摆、“云上”泼水等活动，在网络上感受泼水节的氛围。
+    </p>
+  </div>
+
+  <div class="align">
+    <p>123</p>
+  </div>
+
+  <div class="spacing">
+    my name is tang
+  </div>
+</body>
+</html>

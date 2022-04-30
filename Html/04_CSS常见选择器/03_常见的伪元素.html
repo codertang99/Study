@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .root::first-line {
+      font-weight: 700;
+      color: #cccccc;
+    }
+    .root::first-letter {
+      font-weight: 700;
+      font-size: 40px;
+      color: #ff0000;
+    }
+
+    .root::before {
+      /* 
+        content 即可以是文本也可以url引入的图片资源
+        默认它是行内非替换元素, 设置宽高无效, 需要display改变结构
+        content元素必须设置即使无内容也需要设置为空
+      */
+      content: "嘿嘿嘿";
+    }
+
+    .root::after {
+      content: "fight";
+    }
+  </style>
+</head>
+<body>
+  <div class="root">
+    codertang的学习小记录
+  </div>
+</body>
+</html>

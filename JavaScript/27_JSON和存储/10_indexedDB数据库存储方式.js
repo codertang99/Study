@@ -1,4 +1,4 @@
-const indexDB = indexedDB.open("tang", 1)
+const indexDB = indexedDB.open("tang", 5)
 
 indexDB.error = function(err) {
   console.log("数据库打开失败", err);

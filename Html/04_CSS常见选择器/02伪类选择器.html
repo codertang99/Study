@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box:hover {
+      background-color: #ff0000;
+    }
+    a:link {
+      /* 链接未被访问过的状态 */
+      color: #ff0000;
+    }
+
+    a:visited {
+      /* 鼠标被访问过的*/
+      color: #00ff00;
+    }
+
+    a:focus {
+      color: #666f90;
+    }
+
+    a:hover {
+      /* 鼠标悬浮在上面的状态 */
+      color: #cccccc;
+    }
+
+    a:active {
+      /* 鼠标点击未释放 */
+      color: #0000ff;
+    }
+    
+  </style>
+</head>
+<body>
+  <!-- 元素的状态: 鼠标停留, 点击,  -->
+  <div class="box">我是div元素</div>
+  <a href="http://www.mi.com">小米</a>
+</body>
+</html>

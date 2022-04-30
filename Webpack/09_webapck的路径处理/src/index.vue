@@ -6,22 +6,20 @@
 </template>
 
 <script>
+import { ref, reactive, toRefs, toRef } from "vue";
 
-  import { ref, reactive, toRefs, toRef } from "vue"
+export default {
+  setup() {
+    const message = ref("hello tang123");
+    const form = reactive({
+      name: "tang",
+      age: 20,
+    });
 
-  export default {
-    setup() {
-
-      const message = ref("hello tang123")
-      const form = reactive({
-        name: "tang",
-        age: 20
-      })
-
-      return {
-        message,
-        ...toRefs(form)
-      }
-    }
-  }
+    return {
+      message,
+      ...toRefs(form),
+    };
+  },
+};
 </script>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .content {
+      /* 默认字体文字相关的属性, 都具备继承性 */
+      font-size: 20px;
+      border: 1px solid #cccccc;
+    }
+
+    p {
+      /* border不具备border, 可以通过inherit来强制继承 */
+      border: inherit;
+    }
+  </style>
+</head>
+<body>
+  <div class="content">
+    123
+    <p>hello</p>
+  </div>
+</body>
+</html>

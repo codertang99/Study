@@ -5,7 +5,7 @@ function makeArea(shape: Shape) {
 // 抽象类不能被new, 抽象方法必须被子类实现
 
 abstract class Shape {
-  abstract name: string
+  abstract name: string;
   abstract getArea();
 }
 
